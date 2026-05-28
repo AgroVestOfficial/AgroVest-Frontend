@@ -1,35 +1,58 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 
 const Categories = () => {
-    return (
-        <section className='w-full flex flex-col md:px-28 px-6 my-20'>
-            <main className='w-full flex flex-col gap-6'>
-                <h1 className="md:text-4xl text-3xl text-darkgreen font-medium">Explore our product <br />categories</h1>
-                <div className='w-full grid md:grid-cols-2 md:gap-16 gap-6'>
-                    <div className='w-full flex items-center bg-gray-100 rounded-[10px] p-6 shadow-lg'>
-                        <div className='flex-1 flex flex-col gap-3'>
-                            <h4 className='md:text-3xl text-2xl text-gray-700'>Fresh Farm Produce</h4>
-                            <p className='text-sm text-gray-500'>Farm-fresh fruits, vegetables, and herbs at their peak.</p>
-                        </div>
-                        <div className='w-[45%]'>
-                            <Image src={`https://res.cloudinary.com/dad1drjht/image/upload/v1725006978/wk70uqjvhlrtaee3r5lh.png`} alt='farm produce' width={300} height={217} quality={100} priority className='w-full' />
-                        </div>
-                    </div>
+  return (
+    <section className="my-20 flex w-full flex-col px-6 md:px-28">
+      <main className="flex w-full flex-col gap-6">
+        <h1 className="text-3xl font-medium text-darkgreen md:text-4xl">
+          Explore our product <br />
+          categories
+        </h1>
+        <div className="grid w-full gap-6 md:grid-cols-2 md:gap-16">
+          <div className="flex w-full items-center rounded-[10px] bg-gray-100 p-6 shadow-lg">
+            <div className="flex flex-1 flex-col gap-3">
+              <h4 className="text-2xl text-gray-700 md:text-3xl">Fresh Farm Produce</h4>
+              <p className="text-sm text-gray-500">
+                Farm-fresh fruits, vegetables, and herbs at their peak.
+              </p>
+            </div>
+            <div className="w-[45%]">
+              <Image
+                src={`https://res.cloudinary.com/dad1drjht/image/upload/v1725006978/wk70uqjvhlrtaee3r5lh.png`}
+                alt="farm produce"
+                width={300}
+                height={217}
+                quality={100}
+                priority
+                className="w-full"
+              />
+            </div>
+          </div>
 
-                    <div className='w-full flex items-center bg-gray-100 rounded-[10px] gap-10 p-6 shadow-lg'>
-                        <div className='flex-1 flex flex-col gap-3'>
-                            <h4 className='md:text-3xl text-2xl text-gray-700'>Seeds & Plants</h4>
-                            <p className='text-sm text-gray-500'>High-quality seeds and young plants ready for your garden.</p>
-                        </div>
-                        <div className='w-[30%] h-[180px]'>
-                            <Image src={`https://res.cloudinary.com/dad1drjht/image/upload/v1725006977/f8bfn8wcti2vactra0mo.png`} alt='farm produce' width={200} height={239} quality={100} priority className='w-full h-full' />
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </section>
-    )
-}
+          <div className="flex w-full items-center gap-10 rounded-[10px] bg-gray-100 p-6 shadow-lg">
+            <div className="flex flex-1 flex-col gap-3">
+              <h4 className="text-2xl text-gray-700 md:text-3xl">Seeds & Plants</h4>
+              <p className="text-sm text-gray-500">
+                High-quality seeds and young plants ready for your garden.
+              </p>
+            </div>
+            <div className="h-[180px] w-[30%]">
+              <Image
+                src={`https://res.cloudinary.com/dad1drjht/image/upload/v1725006977/f8bfn8wcti2vactra0mo.png`}
+                alt="farm produce"
+                width={200}
+                height={239}
+                quality={100}
+                priority
+                className="h-full w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </main>
+    </section>
+  );
+};
 
-export default Categories
+export default Categories;

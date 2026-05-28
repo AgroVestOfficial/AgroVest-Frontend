@@ -50,12 +50,7 @@ const MyMarket = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await addProduct(
-        productName,
-        productImage,
-        productDesc,
-        Number(productPrice)
-      );
+      await addProduct(productName, productImage, productDesc, Number(productPrice));
       toast.dismiss();
       toast.success("Product added Successfully!");
       setProductName("");
@@ -71,41 +66,35 @@ const MyMarket = () => {
     }
   };
   return (
-    <section className="w-full flex flex-col gap-6 py-4">
-      <h1 className="uppercase text-darkgreen font-semibold text-base md:text-xl">
-        Market Place
-      </h1>
+    <section className="flex w-full flex-col gap-6 py-4">
+      <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Market Place</h1>
 
-      <div className="w-full flex gap-4">
+      <div className="flex w-full gap-4">
         <Link
           href="/user/marketplace"
-          className={`text-base rounded font-medium py-2 px-4  ${
-            path === "/user/marketplace"
-              ? "bg-darkgreen text-lightgreen"
-              : "text-darkgreen"
+          className={`rounded px-4 py-2 text-base font-medium ${
+            path === "/user/marketplace" ? "bg-darkgreen text-lightgreen" : "text-darkgreen"
           }`}
         >
           All Products
         </Link>
         <Link
           href="/user/marketplace/mine"
-          className={`text-base rounded font-medium py-2 px-4  ${
-            path === "/user/marketplace/mine"
-              ? "bg-darkgreen text-lightgreen"
-              : "text-darkgreen"
+          className={`rounded px-4 py-2 text-base font-medium ${
+            path === "/user/marketplace/mine" ? "bg-darkgreen text-lightgreen" : "text-darkgreen"
           }`}
         >
           My Products
         </Link>
       </div>
 
-      <div className="w-full flex justify-end items-center gap-4">
+      <div className="flex w-full items-center justify-end gap-4">
         {/* <button className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[5px] text-base">
           Mint
         </button> */}
         <Button
           onPress={onOpen}
-          className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[5px] text-base"
+          className="rounded-[5px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
         >
           Add product
         </Button>
@@ -117,32 +106,32 @@ const MyMarket = () => {
         <ModalContent>
           {() => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-gray-800 capitalize">
+              <ModalHeader className="flex flex-col gap-1 capitalize text-gray-800">
                 Add your product
               </ModalHeader>
               <ModalBody className="flex flex-col gap-4">
-                <form className="w-full grid gap-4" onSubmit={handleSubmit}>
-                  <div className="w-full flex flex-col items-center">
-                    <div className="w-[80px] h-[80px] border-[0.5px] border-lightgreen/50 rounded relative ">
+                <form className="grid w-full gap-4" onSubmit={handleSubmit}>
+                  <div className="flex w-full flex-col items-center">
+                    <div className="relative h-[80px] w-[80px] rounded border-[0.5px] border-lightgreen/50">
                       {selectedFile ? (
                         <Image
                           src={URL.createObjectURL(selectedFile)}
                           alt="profile"
-                          className="w-full h-full object-cover"
+                          className="h-full w-full object-cover"
                           width={440}
                           height={440}
                           priority
                           quality={100}
                         />
                       ) : (
-                        <span className="relative flex justify-center items-center w-full h-full">
+                        <span className="relative flex h-full w-full items-center justify-center">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="size-6 relative text-6xl inline-flex rounded text-gray-300"
+                            className="relative inline-flex size-6 rounded text-6xl text-gray-300"
                           >
                             <path
                               strokeLinecap="round"
@@ -167,7 +156,7 @@ const MyMarket = () => {
                       />
                       <label
                         htmlFor="selectFile"
-                        className=" absolute -right-1 p-1 rounded-full -bottom-1 cursor-pointer bg-gray-100 border-[0.5px] border-color3/50 font-Bebas tracking-wider text-gray-700"
+                        className="border-color3/50 font-Bebas absolute -bottom-1 -right-1 cursor-pointer rounded-full border-[0.5px] bg-gray-100 p-1 tracking-wider text-gray-700"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -187,10 +176,7 @@ const MyMarket = () => {
                     </div>
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productName"
-                      className="text-gray-800 font-medium ml-1"
-                    >
+                    <label htmlFor="productName" className="ml-1 font-medium text-gray-800">
                       Product Name
                     </label>
                     <input
@@ -198,17 +184,14 @@ const MyMarket = () => {
                       name="productName"
                       id="productName"
                       placeholder="Enter product name"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={productName}
                       onChange={(e) => setProductName(e.target.value)}
                       required
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productImg"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="productImg" className="ml-1 font-medium text-gray-700">
                       Product Image URI
                     </label>
                     <input
@@ -216,7 +199,7 @@ const MyMarket = () => {
                       name="productImg"
                       id="productImg"
                       placeholder="Product Image URI"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={productImage}
                       onChange={(e: any) => setProductImage(e.target.value)}
                       readOnly
@@ -224,10 +207,7 @@ const MyMarket = () => {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productDesc"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="productDesc" className="ml-1 font-medium text-gray-700">
                       Product Description
                     </label>
                     <input
@@ -235,17 +215,14 @@ const MyMarket = () => {
                       name="productDesc"
                       id="productDesc"
                       placeholder="Enter product description"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={productDesc}
                       onChange={(e) => setProductDesc(e.target.value)}
                       required
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productPrice"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="productPrice" className="ml-1 font-medium text-gray-700">
                       Product Price
                     </label>
                     <input
@@ -253,14 +230,14 @@ const MyMarket = () => {
                       name="productPrice"
                       id="productPrice"
                       placeholder="Enter product price"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={productPrice}
                       onChange={(e) => setProductPrice(e.target.value)}
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[7px] text-base mt-3"
+                    className="mt-3 rounded-[7px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
                   >
                     Submit
                   </Button>

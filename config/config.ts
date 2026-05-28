@@ -41,9 +41,7 @@ export const crossfi = defineChain({
   },
   rpcUrls: {
     default: {
-      http: [
-        "https://crossfi-testnet.blastapi.io/02aed652-3771-4acc-bf97-79a2ea437e21",
-      ],
+      http: ["https://crossfi-testnet.blastapi.io/02aed652-3771-4acc-bf97-79a2ea437e21"],
     },
   },
   blockExplorers: {

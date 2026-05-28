@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Providers } from "./providers";
 import { Toaster } from "sonner";
 import { getMetadata } from "@/utils/getMetadata";
-import { headers } from 'next/headers'
+import { headers } from "next/headers";
 import ContextProvider from "@/context";
 
 const fontSans = FontSans({
@@ -14,7 +14,8 @@ const fontSans = FontSans({
 
 export const metadata = getMetadata({
   title: "AgroVest",
-  description: "Tokenize your business, attract investors, while showcasing your products on a thriving marketplace. ",
+  description:
+    "Tokenize your business, attract investors, while showcasing your products on a thriving marketplace. ",
 });
 
 export default function RootLayout({
@@ -22,22 +23,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const headersObj = headers();
-  const cookies = headersObj.get('cookie')
+  const cookies = headersObj.get("cookie");
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen antialiased bg-white",
-          fontSans.variable
-        )}
-      >
+      <body className={cn("min-h-screen bg-white antialiased", fontSans.variable)}>
         <ContextProvider cookies={cookies}>
-          <Providers>
-            {children}
-          </Providers>
+          <Providers>{children}</Providers>
           <Toaster richColors />
         </ContextProvider>
       </body>

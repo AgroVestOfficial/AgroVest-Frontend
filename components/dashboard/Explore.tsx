@@ -13,24 +13,22 @@ const ExploreUserFarm = () => {
   const router = useRouter();
 
   return (
-    <section className="w-full flex flex-col gap-6 py-4">
-      <h1 className="uppercase text-darkgreen font-semibold text-base md:text-xl">
-        Investments
-      </h1>
+    <section className="flex w-full flex-col gap-6 py-4">
+      <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Investments</h1>
 
-      <div className="w-full flex justify-between items-center">
-        <h3 className="md:text-2xl text-darkgreen font-medium">
+      <div className="flex w-full items-center justify-between">
+        <h3 className="font-medium text-darkgreen md:text-2xl">
           Current investment opportunities.
         </h3>
       </div>
 
-      <div className="w-full grid md:grid-cols-2 gap-8">
+      <div className="grid w-full gap-8 md:grid-cols-2">
         {investment?.map((res, index: number) => (
           <div
             key={index}
-            className="bg-gray-100 rounded-[10px] p-4 shadow-lg flex flex-col items-end gap-2"
+            className="flex flex-col items-end gap-2 rounded-[10px] bg-gray-100 p-4 shadow-lg"
           >
-            <div className="w-full h-[200px]">
+            <div className="h-[200px] w-full">
               <Image
                 src={`https://gateway.pinata.cloud/ipfs/${res.image}`}
                 alt={res.name}
@@ -38,17 +36,15 @@ const ExploreUserFarm = () => {
                 height={1360}
                 quality={100}
                 priority
-                className="w-full h-full object-cover"
+                className="h-full w-full object-cover"
               />
             </div>
-            <div className="flex w-full justify-between items-center">
-              <h4 className="text-base font-semibold text-left text-gray-700">
-                {res.name}
-              </h4>
+            <div className="flex w-full items-center justify-between">
+              <h4 className="text-left text-base font-semibold text-gray-700">{res.name}</h4>
             </div>
             <p className="text-sm text-gray-500">{res.about}</p>
             <button
-              className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[7px] text-base mt-3"
+              className="mt-3 rounded-[7px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
               onClick={() => router.push(`/user/explore/${Number(res.farmId)}`)}
             >
               View more

@@ -1,13 +1,13 @@
-import React from "react"
-import type { NextPage } from "next"
-import MyCarts from "@/components/dashboard/MyCarts"
+import React from "react";
+import type { NextPage } from "next";
+import MyCarts from "@/components/dashboard/MyCarts";
 
 const Transactions: NextPage = () => {
-    return (
-        <main className="w-full flex flex-col overflow-x-hidden">
-            <MyCarts />
-        </main>
-    )
-}
+  return (
+    <main className="flex w-full flex-col overflow-x-hidden">
+      <MyCarts />
+    </main>
+  );
+};
 
-export default Transactions
+export default Transactions;

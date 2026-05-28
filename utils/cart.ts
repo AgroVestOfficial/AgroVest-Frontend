@@ -13,8 +13,7 @@ export const cartItems: CartItem[] = [
     name: "Cassava",
     priceInEth: 0.02,
     quantity: 1,
-    image:
-      "https://res.cloudinary.com/dad1drjht/image/upload/v1725010650/ezptdsphjxnsbt9yhivf.jpg",
+    image: "https://res.cloudinary.com/dad1drjht/image/upload/v1725010650/ezptdsphjxnsbt9yhivf.jpg",
     total: 0.02 * 1, // 0.02 ETH
   },
   {
@@ -22,8 +21,7 @@ export const cartItems: CartItem[] = [
     name: "Coco Yam",
     priceInEth: 0.03,
     quantity: 1,
-    image:
-      "https://res.cloudinary.com/dad1drjht/image/upload/v1725010650/o5vkkoec30vmkitttaw3.jpg",
+    image: "https://res.cloudinary.com/dad1drjht/image/upload/v1725010650/o5vkkoec30vmkitttaw3.jpg",
     total: 0.03 * 1, // 0.03 ETH
   },
   {
@@ -31,8 +29,7 @@ export const cartItems: CartItem[] = [
     name: "Plantain",
     priceInEth: 0.025,
     quantity: 1,
-    image:
-      "https://res.cloudinary.com/dad1drjht/image/upload/v1725010650/qya5lp1njplhtuzaugbl.jpg",
+    image: "https://res.cloudinary.com/dad1drjht/image/upload/v1725010650/qya5lp1njplhtuzaugbl.jpg",
     total: 0.025 * 1, // 0.025 ETH
   },
   {
@@ -40,8 +37,7 @@ export const cartItems: CartItem[] = [
     name: "Palm Oil",
     priceInEth: 0.04,
     quantity: 1,
-    image:
-      "https://res.cloudinary.com/dad1drjht/image/upload/v1725010653/jx8pbz3o1yaoo8ulamrf.jpg",
+    image: "https://res.cloudinary.com/dad1drjht/image/upload/v1725010653/jx8pbz3o1yaoo8ulamrf.jpg",
     total: 0.04 * 1, // 0.04 ETH
   },
 ];

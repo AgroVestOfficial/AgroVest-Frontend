@@ -149,20 +149,16 @@ const DashboardSidebar = ({
       }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
-      <div className="flex flex-col gap-2 px-6 py-8 lg:py-6.5">
-        <div className="flex items-start justify-between gap-2  ">
-          <Logo
-            href="/user"
-            classname="md:w-[150px] w-[110px] flex items-end"
-            image={logo}
-          />
+      <div className="lg:py-6.5 flex flex-col gap-2 px-6 py-8">
+        <div className="flex items-start justify-between gap-2">
+          <Logo href="/user" classname="md:w-[150px] w-[110px] flex items-end" image={logo} />
 
           <button
             ref={trigger}
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-controls="sidebar"
             aria-expanded={sidebarOpen}
-            className="block lg:hidden text-white"
+            className="block text-white lg:hidden"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -180,23 +176,23 @@ const DashboardSidebar = ({
             </svg>
           </button>
         </div>
-        <h1 className="text-sm ml-2 text-gray-200 uppercase">Welcome Back</h1>
+        <h1 className="ml-2 text-sm uppercase text-gray-200">Welcome Back</h1>
       </div>
 
       {/* <!-- SIDEBAR HEADER --> */}
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
         {/* <!-- Sidebar Menu --> */}
-        <nav className="mt-3 pb-4 px-4 lg:mt-3 lg:px-6">
+        <nav className="mt-3 px-4 pb-4 lg:mt-3 lg:px-6">
           {/* <!-- Menu Group --> */}
           <div>
-            <ul className=" flex flex-col gap-1.5">
+            <ul className="flex flex-col gap-1.5">
               {/* <!-- Menu Item Calendar --> */}
               {navDashboardLinks.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className={`group relative capitalize flex items-center gap-2.5 rounded-sm py-2 px-4 text-gray-300 duration-300 ease-in-out before:absolute before:left-0 before:top-0 before:w-0.5 before:transition-all before:duration-200  before:bg-lightgreen hover:before:h-full ${
+                    className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 capitalize text-gray-300 duration-300 ease-in-out before:absolute before:left-0 before:top-0 before:w-0.5 before:bg-lightgreen before:transition-all before:duration-200 hover:before:h-full ${
                       pathname === link.href ? "before:h-full" : "before:h-0"
                     }`}
                     onClick={handleCloseSideBar}
@@ -208,7 +204,7 @@ const DashboardSidebar = ({
               ))}
               <li>
                 <button
-                  className="flex items-center gap-2.5 rounded-sm py-2 px-4  text-gray-300 duration-300 ease-in-out"
+                  className="flex items-center gap-2.5 rounded-sm px-4 py-2 text-gray-300 duration-300 ease-in-out"
                   onClick={() => open()}
                 >
                   <svg

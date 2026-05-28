@@ -26,35 +26,33 @@ const PurchasedItems = () => {
   };
 
   return (
-    <section className="w-full flex flex-col gap-6 py-4">
-      <h1 className="uppercase text-darkgreen font-semibold text-base md:text-xl">
-        Transactions
-      </h1>
+    <section className="flex w-full flex-col gap-6 py-4">
+      <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Transactions</h1>
 
-      <div className="w-full flex gap-0 md:ml-3">
+      <div className="flex w-full gap-0 md:ml-3">
         <Link
           href="/user/transactions"
-          className={`text-base font-medium py-2 px-4  ${
+          className={`px-4 py-2 text-base font-medium ${
             path === "/user/transactions"
               ? "bg-darkgreen text-gray-200"
-              : "text-darkgreen bg-lightgreen"
+              : "bg-lightgreen text-darkgreen"
           }`}
         >
           Cart
         </Link>
         <Link
           href="/user/transactions/purchased"
-          className={`text-base font-medium py-2 px-4  ${
+          className={`px-4 py-2 text-base font-medium ${
             path === "/user/transactions/purchased"
               ? "bg-darkgreen text-gray-200"
-              : "text-darkgreen bg-lightgreen"
+              : "bg-lightgreen text-darkgreen"
           }`}
         >
           Purchased
         </Link>
       </div>
 
-      <div className="w-full flex-1 bg-gray-100 p-4 rounded">
+      <div className="w-full flex-1 rounded bg-gray-100 p-4">
         <Table>
           <TableHeader>
             <TableRow className="text-gray-800">
@@ -66,9 +64,9 @@ const PurchasedItems = () => {
           <TableBody>
             {purchasedItem?.map((item: ProductType, index: number) => (
               <TableRow key={index} className="text-gray-600">
-                <TableCell className="font-medium text-start">
+                <TableCell className="text-start font-medium">
                   <div className="flex items-center gap-2">
-                    <div className="w-[50px] h-[50px]">
+                    <div className="h-[50px] w-[50px]">
                       <Image
                         src={`https://gateway.pinata.cloud/ipfs/${item.product_image}`}
                         alt={item.product_name}
@@ -76,13 +74,11 @@ const PurchasedItems = () => {
                         height={427}
                         quality={100}
                         priority
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
                       />
                     </div>
                     <div className="flex flex-col gap-1">
-                      <h3 className="text-gray-700 font-semibold text-sm">
-                        {item.product_name}
-                      </h3>
+                      <h3 className="text-sm font-semibold text-gray-700">{item.product_name}</h3>
                     </div>
                   </div>
                 </TableCell>

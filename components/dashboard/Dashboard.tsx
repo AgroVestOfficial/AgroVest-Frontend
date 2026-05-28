@@ -20,12 +20,7 @@ import { formatEther } from "viem";
 import useGetTotalSales from "@/hooks/ReadHooks/useGetTotalSales";
 import useGetTotalInvestment from "@/hooks/ReadHooks/useGetTotalInvestment";
 import useGetAllAvailableInvestment from "@/hooks/ReadHooks/useGetAllAvailableInvestment";
-import {
-  FarmType,
-  InvestmentType,
-  InvestorsType,
-  ProductType,
-} from "@/utils/types";
+import { FarmType, InvestmentType, InvestorsType, ProductType } from "@/utils/types";
 
 const UserDashboard = () => {
   const { data: products } = useGetAllFarmProducts() as { data: ProductType[] };
@@ -38,64 +33,52 @@ const UserDashboard = () => {
   };
 
   return (
-    <section className="w-full flex flex-col gap-6 py-4">
-      <h1 className="uppercase text-darkgreen font-medium text-base md:text-xl">
-        Overview
-      </h1>
+    <section className="flex w-full flex-col gap-6 py-4">
+      <h1 className="text-base font-medium uppercase text-darkgreen md:text-xl">Overview</h1>
 
-      <main className="w-full grid lg:grid-cols-5 md:grid-cols-3 gap-4">
-        <div className="bg-gray-100 rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-          <h4 className="text-gray-800 font-light">Total Businesses</h4>
-          <h1 className="text-2xl text-darkgreen font-semibold">
-            {farms?.length}
-          </h1>
+      <main className="grid w-full gap-4 md:grid-cols-3 lg:grid-cols-5">
+        <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] bg-gray-100 p-3">
+          <h4 className="font-light text-gray-800">Total Businesses</h4>
+          <h1 className="text-2xl font-semibold text-darkgreen">{farms?.length}</h1>
         </div>
-        <div className="bg-gray-100 rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-          <h4 className="text-gray-800 font-light">Total Investors</h4>
-          <h1 className="text-2xl text-darkgreen font-semibold">
-            {investors?.length}
-          </h1>
+        <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] bg-gray-100 p-3">
+          <h4 className="font-light text-gray-800">Total Investors</h4>
+          <h1 className="text-2xl font-semibold text-darkgreen">{investors?.length}</h1>
         </div>
-        <div className="bg-gray-100 rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-          <h4 className="text-gray-800 font-light">Total Investments</h4>
-          <h1 className="text-2xl text-darkgreen font-semibold">
+        <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] bg-gray-100 p-3">
+          <h4 className="font-light text-gray-800">Total Investments</h4>
+          <h1 className="text-2xl font-semibold text-darkgreen">
             {totalInvestment ? formatEther(totalInvestment) : "0"} ETH
           </h1>
         </div>
-        <div className="bg-gray-100 rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-          <h4 className="text-gray-800 font-light">Total Products</h4>
-          <h1 className="text-2xl text-darkgreen font-semibold">
-            {products?.length}
-          </h1>
+        <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] bg-gray-100 p-3">
+          <h4 className="font-light text-gray-800">Total Products</h4>
+          <h1 className="text-2xl font-semibold text-darkgreen">{products?.length}</h1>
         </div>
-        <div className="bg-gray-100 rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-          <h4 className="text-gray-800 font-light">Total Sales</h4>
-          <h1 className="text-2xl text-darkgreen font-semibold">
+        <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] bg-gray-100 p-3">
+          <h4 className="font-light text-gray-800">Total Sales</h4>
+          <h1 className="text-2xl font-semibold text-darkgreen">
             {totalSales ? formatEther(totalSales) : "0"} ETH
           </h1>
         </div>
       </main>
 
-      <main className="w-full grid lg:grid-cols-5 md:grid-cols-2 gap-4 my-7">
-        <div className="lg:col-span-3 flex flex-col bg-gray-100 rounded-[5px] p-4">
-          <h1 className="uppercase text-gray-800 text-lg font-medium  text-center">
+      <main className="my-7 grid w-full gap-4 md:grid-cols-2 lg:grid-cols-5">
+        <div className="flex flex-col rounded-[5px] bg-gray-100 p-4 lg:col-span-3">
+          <h1 className="text-center text-lg font-medium uppercase text-gray-800">
             Monthly Reports
           </h1>
           <Barchart />
         </div>
-        <div className="lg:col-span-2 flex flex-col bg-gray-100 rounded-[5px] p-4">
-          <h1 className="uppercase text-gray-800 text-lg font-medium  text-center">
-            Sales Reports
-          </h1>
+        <div className="flex flex-col rounded-[5px] bg-gray-100 p-4 lg:col-span-2">
+          <h1 className="text-center text-lg font-medium uppercase text-gray-800">Sales Reports</h1>
           <Piechart />
         </div>
       </main>
 
       {/* table  */}
-      <main className="w-full bg-gray-100 rounded-[5px] p-4 flex flex-col gap-4">
-        <h2 className="text-gray-700 text-lg font-medium uppercase text-center">
-          Recent Business
-        </h2>
+      <main className="flex w-full flex-col gap-4 rounded-[5px] bg-gray-100 p-4">
+        <h2 className="text-center text-lg font-medium uppercase text-gray-700">Recent Business</h2>
         <Table>
           <TableHeader>
             <TableRow className="text-gray-800">
@@ -108,32 +91,20 @@ const UserDashboard = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {availableInvestment
-              ?.slice(0, 3)
-              .map((farm: InvestmentType, index: number) => (
-                <TableRow key={index} className="text-gray-600">
-                  <TableCell className="font-medium text-start">
-                    {farm.name}
-                  </TableCell>
-                  <TableCell className="text-center">
-                    {Number(farm.minAmount)} ETH
-                  </TableCell>
-                  <TableCell className="text-center">
-                    {Number(farm.farmInvestorCount)}
-                  </TableCell>
-                  <TableCell className="text-center">
-                    {Number(farm.amountRaised)} ETH
-                  </TableCell>
-                  <TableCell className="text-center">
-                    {Number(farm.minAmount) - Number(farm.amountRaised)} ETH
-                  </TableCell>
-                  <TableCell className="text-center">
-                    {farm.minAmount - farm.amountRaised > 0
-                      ? "Ongoing"
-                      : "Ended"}
-                  </TableCell>
-                </TableRow>
-              ))}
+            {availableInvestment?.slice(0, 3).map((farm: InvestmentType, index: number) => (
+              <TableRow key={index} className="text-gray-600">
+                <TableCell className="text-start font-medium">{farm.name}</TableCell>
+                <TableCell className="text-center">{Number(farm.minAmount)} ETH</TableCell>
+                <TableCell className="text-center">{Number(farm.farmInvestorCount)}</TableCell>
+                <TableCell className="text-center">{Number(farm.amountRaised)} ETH</TableCell>
+                <TableCell className="text-center">
+                  {Number(farm.minAmount) - Number(farm.amountRaised)} ETH
+                </TableCell>
+                <TableCell className="text-center">
+                  {farm.minAmount - farm.amountRaised > 0 ? "Ongoing" : "Ended"}
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </main>

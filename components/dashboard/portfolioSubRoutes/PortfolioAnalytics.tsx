@@ -13,30 +13,26 @@ const PortfolioAnalytics = () => {
   };
 
   return (
-    <main className="w-full bg-gray-100 grid lg:grid-cols-5 md:grid-cols-3 gap-4">
-      <div className="rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-        <h4 className="text-gray-800 font-light">Total Product</h4>
-        <h1 className="text-2xl text-darkgreen font-semibold">
-          {products?.length}
-        </h1>
+    <main className="grid w-full gap-4 bg-gray-100 md:grid-cols-3 lg:grid-cols-5">
+      <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] p-3">
+        <h4 className="font-light text-gray-800">Total Product</h4>
+        <h1 className="text-2xl font-semibold text-darkgreen">{products?.length}</h1>
       </div>
-      <div className="rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-        <h4 className="text-gray-800 font-light">Total Invested</h4>
-        <h1 className="text-2xl text-darkgreen font-semibold">0 ETH</h1>
+      <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] p-3">
+        <h4 className="font-light text-gray-800">Total Invested</h4>
+        <h1 className="text-2xl font-semibold text-darkgreen">0 ETH</h1>
       </div>
-      <div className="rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-        <h4 className="text-gray-800 font-light">Product Sold</h4>
-        <h1 className="text-2xl text-darkgreen font-semibold">0</h1>
+      <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] p-3">
+        <h4 className="font-light text-gray-800">Product Sold</h4>
+        <h1 className="text-2xl font-semibold text-darkgreen">0</h1>
       </div>
-      <div className="rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-        <h4 className="text-gray-800 font-light">Product Purchased</h4>
-        <h1 className="text-2xl text-darkgreen font-semibold">
-          {purchases?.length}
-        </h1>
+      <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] p-3">
+        <h4 className="font-light text-gray-800">Product Purchased</h4>
+        <h1 className="text-2xl font-semibold text-darkgreen">{purchases?.length}</h1>
       </div>
-      <div className="rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-        <h4 className="text-gray-800 font-light">Funds Raised</h4>
-        <h1 className="text-2xl text-darkgreen font-semibold">0</h1>
+      <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] p-3">
+        <h4 className="font-light text-gray-800">Funds Raised</h4>
+        <h1 className="text-2xl font-semibold text-darkgreen">0</h1>
       </div>
     </main>
   );

@@ -71,80 +71,76 @@ const UserPortfolio = () => {
   };
 
   useMemo(() => {
-    const userFamrs = allFarms?.filter(
-      (farm: FarmType) => farm.farmerAddress === address
-    );
+    const userFamrs = allFarms?.filter((farm: FarmType) => farm.farmerAddress === address);
     setUserFarm(userFamrs);
   }, [address, allFarms]);
   const path = usePathname();
   const router = useRouter();
 
   return (
-    <section className="w-full flex flex-col gap-6 py-4">
-      <div className="flex justify-between items-center">
-        <h1 className="uppercase text-darkgreen font-semibold text-base md:text-xl">
-          Farmer
-        </h1>
+    <section className="flex w-full flex-col gap-6 py-4">
+      <div className="flex items-center justify-between">
+        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Farmer</h1>
       </div>
 
       <PortfolioAnalytics />
 
-      <div className="w-full flex gap-0 md:ml-3">
+      <div className="flex w-full gap-0 md:ml-3">
         <Link
           href="/user/portfolio"
-          className={`text-base font-medium py-2 px-4  ${
+          className={`px-4 py-2 text-base font-medium ${
             path === "/user/portfolio"
               ? "bg-darkgreen text-gray-200"
-              : "text-darkgreen bg-lightgreen"
+              : "bg-lightgreen text-darkgreen"
           }`}
         >
           Farm
         </Link>
         <Link
           href="/user/portfolio/investments"
-          className={`text-base font-medium py-2 px-4  ${
+          className={`px-4 py-2 text-base font-medium ${
             path === "/user/portfolio/investments"
               ? "bg-darkgreen text-gray-200"
-              : "text-darkgreen bg-lightgreen"
+              : "bg-lightgreen text-darkgreen"
           }`}
         >
           Investments
         </Link>
         <Link
           href="/user/portfolio/products"
-          className={`text-base font-medium py-2 px-4  ${
+          className={`px-4 py-2 text-base font-medium ${
             path === "/user/portfolio/products"
               ? "bg-darkgreen text-gray-200"
-              : "text-darkgreen bg-lightgreen"
+              : "bg-lightgreen text-darkgreen"
           }`}
         >
           Products
         </Link>
       </div>
 
-      <section className="w-full flex flex-col gap-6 py-4">
-        <div className="w-full flex justify-end items-center gap-4">
+      <section className="flex w-full flex-col gap-6 py-4">
+        <div className="flex w-full items-center justify-end gap-4">
           <Button
             onPress={onOpen}
-            className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[7px] text-base"
+            className="rounded-[7px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
           >
             Register Farm
           </Button>
         </div>
       </section>
 
-      <div className="w-full grid md:grid-cols-2 gap-8">
+      <div className="grid w-full gap-8 md:grid-cols-2">
         {userFarm?.length == 0 ? (
-          <h1 className="md:text-2xl text-xl text-darkgreen font-medium flex w-full h-full justify-center items-center mt-8">
+          <h1 className="mt-8 flex h-full w-full items-center justify-center text-xl font-medium text-darkgreen md:text-2xl">
             You have not registered a farm
           </h1>
         ) : (
           userFarm?.map((res: FarmType, index: number) => (
             <div
               key={index}
-              className="bg-gray-100 rounded-[10px] p-4 shadow-lg flex flex-col items-end gap-2"
+              className="flex flex-col items-end gap-2 rounded-[10px] bg-gray-100 p-4 shadow-lg"
             >
-              <div className="w-full h-[200px]">
+              <div className="h-[200px] w-full">
                 <Image
                   src={`https://gateway.pinata.cloud/ipfs/${res.business_image}`}
                   alt={res.business_name}
@@ -152,19 +148,19 @@ const UserPortfolio = () => {
                   height={1360}
                   quality={100}
                   priority
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
-              <div className="flex w-full justify-between items-center">
-                <h4 className="text-base font-semibold text-left text-gray-700">
+              <div className="flex w-full items-center justify-between">
+                <h4 className="text-left text-base font-semibold text-gray-700">
                   {res.business_name}
                 </h4>
               </div>
-              <p className="text-sm text-gray-500 text-left">{`Email: ${res.business_email}`}</p>
-              <p className="text-sm text-gray-500 text-left">{`Contact: ${res.business_contact}`}</p>
-              <p className="text-sm text-gray-500 text-left">{`Location: ${res.business_location}`}</p>
+              <p className="text-left text-sm text-gray-500">{`Email: ${res.business_email}`}</p>
+              <p className="text-left text-sm text-gray-500">{`Contact: ${res.business_contact}`}</p>
+              <p className="text-left text-sm text-gray-500">{`Location: ${res.business_location}`}</p>
               <button
-                className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[7px] text-base mt-3"
+                className="mt-3 rounded-[7px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
                 onClick={() => router.push(`/user/portfolio/${res.farm_id}`)}
               >
                 View more
@@ -173,40 +169,36 @@ const UserPortfolio = () => {
           ))
         )}
       </div>
-      <Modal
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        className="z-[9999999]"
-      >
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="z-[9999999]">
         <ModalContent>
           {() => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-gray-800 capitalize">
+              <ModalHeader className="flex flex-col gap-1 capitalize text-gray-800">
                 Add your Farm
               </ModalHeader>
               <ModalBody className="flex flex-col gap-4">
-                <form className="w-full grid gap-4" onSubmit={handleSubmit}>
-                  <div className="w-full flex flex-col items-center">
-                    <div className="w-[80px] h-[80px] border-[0.5px] border-darkgreen rounded relative ">
+                <form className="grid w-full gap-4" onSubmit={handleSubmit}>
+                  <div className="flex w-full flex-col items-center">
+                    <div className="relative h-[80px] w-[80px] rounded border-[0.5px] border-darkgreen">
                       {selectedFile ? (
                         <Image
                           src={URL.createObjectURL(selectedFile)}
                           alt="profile"
-                          className="w-full h-full object-cover"
+                          className="h-full w-full object-cover"
                           width={440}
                           height={440}
                           priority
                           quality={100}
                         />
                       ) : (
-                        <span className="relative flex justify-center items-center w-full h-full text-darkgreen">
+                        <span className="relative flex h-full w-full items-center justify-center text-darkgreen">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="size-6 relative text-6xl inline-flex rounded text-gray-300"
+                            className="relative inline-flex size-6 rounded text-6xl text-gray-300"
                           >
                             <path
                               strokeLinecap="round"
@@ -231,7 +223,7 @@ const UserPortfolio = () => {
                       />
                       <label
                         htmlFor="selectFile"
-                        className=" absolute -right-1 p-1 rounded-full -bottom-1 cursor-pointer bg-darkgreen border-[0.5px] border-gray-700/50 font-Bebas tracking-wider text-gray-200"
+                        className="font-Bebas absolute -bottom-1 -right-1 cursor-pointer rounded-full border-[0.5px] border-gray-700/50 bg-darkgreen p-1 tracking-wider text-gray-200"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -251,10 +243,7 @@ const UserPortfolio = () => {
                     </div>
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productName"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="productName" className="ml-1 font-medium text-gray-700">
                       Farm Name
                     </label>
                     <input
@@ -262,17 +251,14 @@ const UserPortfolio = () => {
                       name="productName"
                       id="productName"
                       placeholder="Enter product name"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={productName}
                       onChange={(e) => setProductName(e.target.value)}
                       required
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productDesc"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="productDesc" className="ml-1 font-medium text-gray-700">
                       Farm Location
                     </label>
                     <input
@@ -280,17 +266,14 @@ const UserPortfolio = () => {
                       name="farmLocation"
                       id="farmLocation"
                       placeholder="Enter product description"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={farmLocation}
                       onChange={(e) => setFarmLocation(e.target.value)}
                       required
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productDesc"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="productDesc" className="ml-1 font-medium text-gray-700">
                       Farm Contact Information
                     </label>
                     <input
@@ -298,17 +281,14 @@ const UserPortfolio = () => {
                       name="contactInfo"
                       id="contactInfo"
                       placeholder="Enter product description"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={contactInfo}
                       onChange={(e) => setContactInfo(e.target.value)}
                       required
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="emailAddress"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="emailAddress" className="ml-1 font-medium text-gray-700">
                       Farm Email Address
                     </label>
                     <input
@@ -316,7 +296,7 @@ const UserPortfolio = () => {
                       name="emailAddress"
                       id="emailAddress"
                       placeholder="Enter product description"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={emailAddress}
                       onChange={(e) => setEmailAddress(e.target.value)}
                       required
@@ -325,7 +305,7 @@ const UserPortfolio = () => {
 
                   <Button
                     type="submit"
-                    className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[7px] text-base mt-3"
+                    className="mt-3 rounded-[7px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
                   >
                     Submit
                   </Button>

@@ -83,13 +83,13 @@ const ProductD = ({ id }: { id: string }) => {
   };
 
   return (
-    <section className="w-full flex flex-col gap-6 py-4">
-      <h1 className="uppercase text-darkgreen font-semibold text-base md:text-xl">
+    <section className="flex w-full flex-col gap-6 py-4">
+      <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">
         Product Detail
       </h1>
 
-      <main className="w-full grid md:grid-cols-2 bg-gray-100">
-        <div className="w-full md:h-[350px] h-[250px]">
+      <main className="grid w-full bg-gray-100 md:grid-cols-2">
+        <div className="h-[250px] w-full md:h-[350px]">
           <Image
             src={`https://gateway.pinata.cloud/ipfs/${currentData?.product_image}`}
             alt="productImage"
@@ -97,14 +97,12 @@ const ProductD = ({ id }: { id: string }) => {
             height={427}
             quality={100}
             priority
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
-        <div className="w-full flex flex-col gap-4 py-8 px-8">
-          <div className="w-full flex justify-between items-center">
-            <h2 className="text-2xl text-gray-700 font-semibold">
-              {currentData?.product_name}
-            </h2>
+        <div className="flex w-full flex-col gap-4 px-8 py-8">
+          <div className="flex w-full items-center justify-between">
+            <h2 className="text-2xl font-semibold text-gray-700">{currentData?.product_name}</h2>
             <p className="text-gray-600">
               {currentData && currentData.product_price && (
                 <span>
@@ -115,11 +113,11 @@ const ProductD = ({ id }: { id: string }) => {
             </p>{" "}
           </div>
           <p className="text-gray-600">{currentData?.product_description}</p>
-          <div className="w-full flex justify-between items-center">
-            <p className="text-gray-600 text-lg font-semibold">Quantity</p>
+          <div className="flex w-full items-center justify-between">
+            <p className="text-lg font-semibold text-gray-600">Quantity</p>
             <div className="flex">
               <button
-                className="bg-darkgreen text-gray-200 flex justify-center items-center md:w-10 md:h-10 w-8 h-8 rounded text-base"
+                className="flex h-8 w-8 items-center justify-center rounded bg-darkgreen text-base text-gray-200 md:h-10 md:w-10"
                 onClick={handleDecrement}
               >
                 <FaMinus />
@@ -128,10 +126,10 @@ const ProductD = ({ id }: { id: string }) => {
                 type="number"
                 value={quantity}
                 onChange={(e) => setQuantity(Number(e.target.value))}
-                className="w-10 h-10 border-[0.5px] border-gray-400 rounded text-center font-medium text-gray-700"
+                className="h-10 w-10 rounded border-[0.5px] border-gray-400 text-center font-medium text-gray-700"
               />
               <button
-                className="bg-darkgreen text-gray-200 flex justify-center items-center md:w-10 md:h-10 w-8 h-8 rounded text-base"
+                className="flex h-8 w-8 items-center justify-center rounded bg-darkgreen text-base text-gray-200 md:h-10 md:w-10"
                 onClick={handleIncrement}
               >
                 <FaPlus />
@@ -140,7 +138,7 @@ const ProductD = ({ id }: { id: string }) => {
           </div>
           <Button
             type="button"
-            className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[7px] text-base mt-3"
+            className="mt-3 rounded-[7px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
             onClick={() => handleAddToCart()}
           >
             Add to cart
@@ -149,32 +147,30 @@ const ProductD = ({ id }: { id: string }) => {
       </main>
 
       {/* Reviews */}
-      <main className="w-full flex flex-col bg-gray-100 gap-8 py-8 px-8">
-        <div className="w-full flex justify-between items-center">
-          <h2 className="text-xl text-gray-700 font-semibold">
-            Product Reviews
-          </h2>
+      <main className="flex w-full flex-col gap-8 bg-gray-100 px-8 py-8">
+        <div className="flex w-full items-center justify-between">
+          <h2 className="text-xl font-semibold text-gray-700">Product Reviews</h2>
           <Button
             onPress={onOpen}
-            className="bg-darkgreen text-gray-200 py-2.5 px-6 rounded-[5px] text-sm"
+            className="rounded-[5px] bg-darkgreen px-6 py-2.5 text-sm text-gray-200"
           >
             Submit Review
           </Button>
         </div>
 
-        <section className="w-full flex flex-col gap-4">
+        <section className="flex w-full flex-col gap-4">
           {reviews?.map((review: ReviewType, index: number) => (
             <div
               key={index}
-              className="w-full flex md:flex-row flex-col justify-start items-start md:gap-6 gap-3 rounded bg-gray-50 p-4"
+              className="flex w-full flex-col items-start justify-start gap-3 rounded bg-gray-50 p-4 md:flex-row md:gap-6"
             >
-              <div className="md:w-[70px] md:h-[70px] w-[50px] h-[50px]">
+              <div className="h-[50px] w-[50px] md:h-[70px] md:w-[70px]">
                 <Image
                   src={avatar}
                   alt="avatar"
                   width={100}
                   height={100}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                   quality={100}
                   priority
                 />
@@ -192,23 +188,20 @@ const ProductD = ({ id }: { id: string }) => {
         <ModalContent>
           {() => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-gray-800 capitalize">
+              <ModalHeader className="flex flex-col gap-1 capitalize text-gray-800">
                 Review Product
               </ModalHeader>
               <ModalBody className="flex flex-col gap-4 py-3">
-                <form className="w-full grid gap-4" onSubmit={handleSubmit}>
+                <form className="grid w-full gap-4" onSubmit={handleSubmit}>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productName"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="productName" className="ml-1 font-medium text-gray-700">
                       Review
                     </label>
                     <textarea
                       name="review"
                       id="review"
                       placeholder="Write your review..."
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={review}
                       onChange={(e) => setReview(e.target.value)}
                       required
@@ -217,7 +210,7 @@ const ProductD = ({ id }: { id: string }) => {
 
                   <Button
                     type="submit"
-                    className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[7px] text-base mt-3"
+                    className="mt-3 rounded-[7px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
                   >
                     Submit
                   </Button>

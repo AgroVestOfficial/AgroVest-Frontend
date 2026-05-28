@@ -50,42 +50,34 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
   };
 
   return (
-    <section className="w-full flex flex-col gap-6 py-4">
-      <h1 className="uppercase text-darkgreen font-semibold text-base md:text-xl">
-        Farm Owner
-      </h1>
+    <section className="flex w-full flex-col gap-6 py-4">
+      <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Farm Owner</h1>
 
-      <main className="w-full bg-gray-100 grid lg:grid-cols-4 md:grid-cols-2 gap-4">
-        <div className="rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-          <h4 className="text-gray-800 font-light">Funding Target</h4>
-          <h1 className="text-2xl text-darkgreen font-semibold">
-            {currentData[0]?.fundsTarget}
-          </h1>
+      <main className="grid w-full gap-4 bg-gray-100 md:grid-cols-2 lg:grid-cols-4">
+        <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] p-3">
+          <h4 className="font-light text-gray-800">Funding Target</h4>
+          <h1 className="text-2xl font-semibold text-darkgreen">{currentData[0]?.fundsTarget}</h1>
         </div>
-        <div className="rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-          <h4 className="text-gray-800 font-light">Funds Raised</h4>
-          <h1 className="text-2xl text-darkgreen font-semibold">
-            {currentData[0]?.amountRaised}
-          </h1>
+        <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] p-3">
+          <h4 className="font-light text-gray-800">Funds Raised</h4>
+          <h1 className="text-2xl font-semibold text-darkgreen">{currentData[0]?.amountRaised}</h1>
         </div>
-        <div className="rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
-          <h4 className="text-gray-800 font-light">Investors</h4>
-          <h1 className="text-2xl text-darkgreen font-semibold">
-            {currentData[0]?.investors}
-          </h1>
+        <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] p-3">
+          <h4 className="font-light text-gray-800">Investors</h4>
+          <h1 className="text-2xl font-semibold text-darkgreen">{currentData[0]?.investors}</h1>
         </div>
-        <div className="rounded-[5px] p-3 flex flex-col items-center justify-center gap-2">
+        <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] p-3">
           <Button
             onPress={onOpen}
-            className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[7px] text-base"
+            className="rounded-[7px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
           >
             Edit Profile
           </Button>
         </div>
       </main>
 
-      <main className="w-full grid md:grid-cols-2 md:h-[400px] bg-gray-200">
-        <div className="w-full h-full">
+      <main className="grid w-full bg-gray-200 md:h-[400px] md:grid-cols-2">
+        <div className="h-full w-full">
           <Image
             src={currentData[0]?.imageUrl}
             alt={currentData[0]?.altText}
@@ -93,24 +85,22 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
             height={1360}
             quality={100}
             priority
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
-        <div className="w-full flex flex-col gap-4 pt-8 px-8 pb-4 md:pb-0">
-          <h2 className="text-2xl text-gray-700 font-semibold">
-            {currentData[0]?.name}
-          </h2>
+        <div className="flex w-full flex-col gap-4 px-8 pb-4 pt-8 md:pb-0">
+          <h2 className="text-2xl font-semibold text-gray-700">{currentData[0]?.name}</h2>
           <p className="text-gray-600">{currentData[0]?.description}</p>
-          <div className="w-full border-t border-gray-700 py-5 flex flex-col gap-4">
-            <p className="text-gray-600 flex items-center gap-1.5">
+          <div className="flex w-full flex-col gap-4 border-t border-gray-700 py-5">
+            <p className="flex items-center gap-1.5 text-gray-600">
               <FaLocationDot />
               {currentData[0]?.address}
             </p>
-            <p className="text-gray-600 flex items-center gap-1.5">
+            <p className="flex items-center gap-1.5 text-gray-600">
               <IoLogoWhatsapp />
               {currentData[0]?.phoneNumber}
             </p>
-            <p className="text-gray-600 flex items-center gap-1.5">
+            <p className="flex items-center gap-1.5 text-gray-600">
               <MdEmail />
               {currentData[0]?.email}
             </p>
@@ -119,8 +109,8 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
       </main>
 
       {/* table  */}
-      <main className="w-full bg-gray-100 rounded-[5px] p-4 flex flex-col gap-4">
-        <h2 className="text-gray-700 text-lg font-medium uppercase text-start">
+      <main className="flex w-full flex-col gap-4 rounded-[5px] bg-gray-100 p-4">
+        <h2 className="text-start text-lg font-medium uppercase text-gray-700">
           Investor Listings
         </h2>
         <Table>
@@ -137,9 +127,7 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
           <TableBody>
             {currentData[0]?.fundingDetails.map((farm, index) => (
               <TableRow key={index} className="text-gray-600">
-                <TableCell className="font-medium text-start">
-                  {farm.farmName}
-                </TableCell>
+                <TableCell className="text-start font-medium">{farm.farmName}</TableCell>
                 <TableCell>{farm.fundsTarget}</TableCell>
                 <TableCell>{farm.investors}</TableCell>
                 <TableCell>{farm.amountRaised}</TableCell>
@@ -156,32 +144,32 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
         <ModalContent>
           {() => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-gray-800 capitalize">
+              <ModalHeader className="flex flex-col gap-1 capitalize text-gray-800">
                 Edit Farm Profile
               </ModalHeader>
               <ModalBody className="flex flex-col gap-4 py-3">
-                <form className="w-full grid gap-4" onSubmit={handleSubmit}>
-                  <div className="w-full flex flex-col items-center">
-                    <div className="w-[80px] h-[80px] border-[0.5px] border-darkgreen rounded relative ">
+                <form className="grid w-full gap-4" onSubmit={handleSubmit}>
+                  <div className="flex w-full flex-col items-center">
+                    <div className="relative h-[80px] w-[80px] rounded border-[0.5px] border-darkgreen">
                       {selectedFile ? (
                         <Image
                           src={URL.createObjectURL(selectedFile)}
                           alt="profile"
-                          className="w-full h-full object-cover"
+                          className="h-full w-full object-cover"
                           width={440}
                           height={440}
                           priority
                           quality={100}
                         />
                       ) : (
-                        <span className="relative flex justify-center items-center w-full h-full text-darkgreen">
+                        <span className="relative flex h-full w-full items-center justify-center text-darkgreen">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="size-6 relative text-6xl inline-flex rounded text-gray-300"
+                            className="relative inline-flex size-6 rounded text-6xl text-gray-300"
                           >
                             <path
                               strokeLinecap="round"
@@ -206,7 +194,7 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
                       />
                       <label
                         htmlFor="selectFile"
-                        className=" absolute -right-1 p-1 rounded-full -bottom-1 cursor-pointer bg-darkgreen border-[0.5px] border-gray-700/50 font-Bebas tracking-wider text-gray-200"
+                        className="font-Bebas absolute -bottom-1 -right-1 cursor-pointer rounded-full border-[0.5px] border-gray-700/50 bg-darkgreen p-1 tracking-wider text-gray-200"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -226,10 +214,7 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
                     </div>
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productName"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="productName" className="ml-1 font-medium text-gray-700">
                       Farm Name
                     </label>
                     <input
@@ -237,17 +222,14 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
                       name="productName"
                       id="productName"
                       placeholder="Enter product name"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={productName}
                       onChange={(e) => setProductName(e.target.value)}
                       required
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productImg"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="productImg" className="ml-1 font-medium text-gray-700">
                       Farm Image URI
                     </label>
                     <input
@@ -255,7 +237,7 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
                       name="productImg"
                       id="productImg"
                       placeholder="Product Image URI"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={productImage}
                       onChange={(e: any) => setProductImage(e.target.value)}
                       readOnly
@@ -263,10 +245,7 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productDesc"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="productDesc" className="ml-1 font-medium text-gray-700">
                       Farm Description
                     </label>
                     <input
@@ -274,17 +253,14 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
                       name="productDesc"
                       id="productDesc"
                       placeholder="Enter product description"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={productDesc}
                       onChange={(e) => setProductDesc(e.target.value)}
                       required
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="productPrice"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="productPrice" className="ml-1 font-medium text-gray-700">
                       Product Price
                     </label>
                     <input
@@ -292,14 +268,14 @@ const FarmInvestmentD = ({ id }: { id: string }) => {
                       name="productPrice"
                       id="productPrice"
                       placeholder="Enter product price"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={productPrice}
                       onChange={(e) => setProductPrice(e.target.value)}
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[7px] text-base mt-3"
+                    className="mt-3 rounded-[7px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
                   >
                     Submit
                   </Button>

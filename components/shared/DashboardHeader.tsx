@@ -24,8 +24,8 @@ const DashboardHeader = ({
   //   };
 
   return (
-    <header className="sticky top-0 z-[99] flex w-full bg-white overflow-hidden drop-shadow-1">
-      <div className="flex flex-grow items-center justify-between py-4 px-8 shadow md:px-2 2xl:px-11">
+    <header className="drop-shadow-1 sticky top-0 z-[99] flex w-full overflow-hidden bg-white">
+      <div className="flex flex-grow items-center justify-between px-8 py-4 shadow md:px-2 2xl:px-11">
         <div className="flex items-center gap-3 sm:gap-4 lg:hidden">
           {/* <!-- Hamburger Toggle BTN --> */}
           <button
@@ -37,19 +37,19 @@ const DashboardHeader = ({
             className="z-[9999] block rounded-sm border border-darkgreen bg-transparent p-1.5 shadow-sm lg:hidden"
           >
             <span className="relative block h-5 w-5 cursor-pointer">
-              <span className="block absolute right-0 h-full w-full">
+              <span className="absolute right-0 block h-full w-full">
                 <span
-                  className={`relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-darkgreen delay-[0] duration-200 ease-in-out ${
+                  className={`delay-[0] relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-darkgreen duration-200 ease-in-out ${
                     !sidebarOpen && "!w-full delay-300"
                   }`}
                 ></span>
                 <span
-                  className={`relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-darkgreen delay-150 duration-200 ease-in-out ${
+                  className={`relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-darkgreen delay-150 duration-200 ease-in-out ${
                     !sidebarOpen && "delay-400 !w-full"
                   }`}
                 ></span>
                 <span
-                  className={`relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-darkgreen delay-200 duration-200 ease-in-out ${
+                  className={`relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-darkgreen delay-200 duration-200 ease-in-out ${
                     !sidebarOpen && "!w-full delay-500"
                   }`}
                 ></span>
@@ -57,7 +57,7 @@ const DashboardHeader = ({
               <span className="absolute right-0 h-full w-full rotate-45">
                 <span
                   className={`absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-darkgreen delay-300 duration-200 ease-in-out ${
-                    !sidebarOpen && "!h-0 !delay-[0]"
+                    !sidebarOpen && "!delay-[0] !h-0"
                   }`}
                 ></span>
                 <span
@@ -81,12 +81,12 @@ const DashboardHeader = ({
           <Greeting />
         </div>
 
-        <div className="flex items-center gap-3 2xsm:gap-7">
+        <div className="2xsm:gap-7 flex items-center gap-3">
           {/* <!-- User Area --> */}
           <button
             type="button"
             // onClick={walletConnect}
-            className={`transition-all duration-200 bg-darkgreen text-lightgreen px-4 py-2.5 rounded-[7px] text-sm flex items-center gap-1`}
+            className={`flex items-center gap-1 rounded-[7px] bg-darkgreen px-4 py-2.5 text-sm text-lightgreen transition-all duration-200`}
           >
             {isConnected ? (
               <WalletConnected
@@ -103,7 +103,7 @@ const DashboardHeader = ({
 
           <Link
             href={`/user/transactions`}
-            className="text-darkgreen py-1.5 px-3 bg-lightgreen rounded"
+            className="rounded bg-lightgreen px-3 py-1.5 text-darkgreen"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

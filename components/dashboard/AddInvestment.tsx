@@ -63,11 +63,11 @@ const AddInvestment = () => {
     }
   };
   return (
-    <section className="w-full flex flex-col gap-6 py-4">
-      <div className="w-full flex justify-end items-center gap-4">
+    <section className="flex w-full flex-col gap-6 py-4">
+      <div className="flex w-full items-center justify-end gap-4">
         <Button
           onPress={onOpen}
-          className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[7px] text-base"
+          className="rounded-[7px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
         >
           Create Investment
         </Button>
@@ -78,32 +78,32 @@ const AddInvestment = () => {
         <ModalContent>
           {() => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-gray-800 capitalize">
+              <ModalHeader className="flex flex-col gap-1 capitalize text-gray-800">
                 Investment Profile
               </ModalHeader>
               <ModalBody className="flex flex-col gap-4 py-3">
-                <form className="w-full grid gap-4" onSubmit={handleSubmit}>
-                  <div className="w-full flex flex-col items-center">
-                    <div className="w-[80px] h-[80px] border-[0.5px] border-darkgreen rounded relative ">
+                <form className="grid w-full gap-4" onSubmit={handleSubmit}>
+                  <div className="flex w-full flex-col items-center">
+                    <div className="relative h-[80px] w-[80px] rounded border-[0.5px] border-darkgreen">
                       {selectedFile ? (
                         <Image
                           src={URL.createObjectURL(selectedFile)}
                           alt="profile"
-                          className="w-full h-full object-cover"
+                          className="h-full w-full object-cover"
                           width={440}
                           height={440}
                           priority
                           quality={100}
                         />
                       ) : (
-                        <span className="relative flex justify-center items-center w-full h-full text-darkgreen">
+                        <span className="relative flex h-full w-full items-center justify-center text-darkgreen">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="size-6 relative text-6xl inline-flex rounded text-gray-300"
+                            className="relative inline-flex size-6 rounded text-6xl text-gray-300"
                           >
                             <path
                               strokeLinecap="round"
@@ -128,7 +128,7 @@ const AddInvestment = () => {
                       />
                       <label
                         htmlFor="selectFile"
-                        className=" absolute -right-1 p-1 rounded-full -bottom-1 cursor-pointer bg-darkgreen border-[0.5px] border-gray-700/50 font-Bebas tracking-wider text-gray-200"
+                        className="font-Bebas absolute -bottom-1 -right-1 cursor-pointer rounded-full border-[0.5px] border-gray-700/50 bg-darkgreen p-1 tracking-wider text-gray-200"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -148,10 +148,7 @@ const AddInvestment = () => {
                     </div>
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="farmID"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="farmID" className="ml-1 font-medium text-gray-700">
                       Farm ID
                     </label>
                     <input
@@ -159,17 +156,14 @@ const AddInvestment = () => {
                       name="farmID"
                       id="farmID"
                       placeholder="Enter Farm ID"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={farmID}
                       onChange={(e) => setFarmID(e.target.value)}
                       required
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="investmentName"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="investmentName" className="ml-1 font-medium text-gray-700">
                       Investment Name
                     </label>
                     <input
@@ -177,17 +171,14 @@ const AddInvestment = () => {
                       name="investmentName"
                       id="investmentName"
                       placeholder="Enter Investment Name"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={investmentName}
                       onChange={(e) => setInvestmentName(e.target.value)}
                       required
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="aboutInvestment"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="aboutInvestment" className="ml-1 font-medium text-gray-700">
                       Investment Description
                     </label>
                     <input
@@ -195,17 +186,14 @@ const AddInvestment = () => {
                       name="aboutInvestment"
                       id="aboutInvestment"
                       placeholder="Enter Investment Description"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={aboutInvestment}
                       onChange={(e: any) => setAboutInvestment(e.target.value)}
                       required
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="investmentTarget"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="investmentTarget" className="ml-1 font-medium text-gray-700">
                       Investment Target
                     </label>
                     <input
@@ -213,17 +201,14 @@ const AddInvestment = () => {
                       name="investmentTarget"
                       id="investmentTarget"
                       placeholder="Enter Investment Target"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={investmentTarget}
                       onChange={(e) => setInvestmentTarget(e.target.value)}
                       required
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label
-                      htmlFor="investmentEndDate"
-                      className="text-gray-700 font-medium ml-1"
-                    >
+                    <label htmlFor="investmentEndDate" className="ml-1 font-medium text-gray-700">
                       Investment Duration
                     </label>
                     <input
@@ -231,14 +216,14 @@ const AddInvestment = () => {
                       name="investmentEndDate"
                       id="investmentEndDate"
                       placeholder="Enter Investment Duration"
-                      className="w-full caret-color1 py-3 px-4 outline-none rounded-lg border border-color1 text-sm bg-color1/5 text-gray-700"
+                      className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={investmentEndDate}
                       onChange={(e) => setInvestmentEndDate(e.target.value)}
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="bg-darkgreen text-lightgreen py-2.5 px-6 rounded-[7px] text-base mt-3"
+                    className="mt-3 rounded-[7px] bg-darkgreen px-6 py-2.5 text-base text-lightgreen"
                   >
                     Submit
                   </Button>

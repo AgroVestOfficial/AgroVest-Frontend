@@ -2,7 +2,7 @@ import { useWriteContract } from "wagmi";
 import farmAbi from "../../abis/farm.json";
 import { getAddress } from "viem";
 import { useCallback } from "react";
-import { parseEther } from 'viem';
+import { parseEther } from "viem";
 
 const useUpdateFarmProductDetails = () => {
   const { writeContract } = useWriteContract();
@@ -14,7 +14,7 @@ const useUpdateFarmProductDetails = () => {
       _productName: string,
       _productImage: string,
       _productDescription: string,
-      _productPrice: number,
+      _productPrice: number
     ) => {
       try {
         const result = writeContract({

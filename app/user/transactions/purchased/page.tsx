@@ -1,13 +1,13 @@
-import React from "react"
-import type { NextPage } from "next"
-import PurchasedItems from "@/components/dashboard/PurchasedItems"
+import React from "react";
+import type { NextPage } from "next";
+import PurchasedItems from "@/components/dashboard/PurchasedItems";
 
 const Purchased: NextPage = () => {
-    return (
-        <main className="w-full flex flex-col overflow-x-hidden">
-            <PurchasedItems />
-        </main>
-    )
-}
+  return (
+    <main className="flex w-full flex-col overflow-x-hidden">
+      <PurchasedItems />
+    </main>
+  );
+};
 
-export default Purchased
+export default Purchased;

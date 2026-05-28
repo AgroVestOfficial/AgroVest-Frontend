@@ -23,7 +23,15 @@ const useCreateInvestment = () => {
           abi: investmentABI,
           address: getAddress(contractAddress),
           functionName: "createInvestment",
-          args: [BigInt(_farmId), _image, _name, _about, BigInt(_minAmount), BigInt(_endDate), _owner],
+          args: [
+            BigInt(_farmId),
+            _image,
+            _name,
+            _about,
+            BigInt(_minAmount),
+            BigInt(_endDate),
+            _owner,
+          ],
         });
         return result;
       } catch (err) {

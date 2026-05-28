@@ -1,16 +1,13 @@
-'use client'
-import React from 'react'
-import { InfinitySpin } from 'react-loader-spinner'
+"use client";
+import React from "react";
+import { InfinitySpin } from "react-loader-spinner";
 
 const ProgressLoader = () => {
-    return (
-        <div className="fixed top-0 left-0 w-full h-screen z-[9999] bg-white flex justify-center items-center">
-            <InfinitySpin
-                width="200"
-                color="#02390F"
-            />
-        </div>
-    )
-}
+  return (
+    <div className="fixed left-0 top-0 z-[9999] flex h-screen w-full items-center justify-center bg-white">
+      <InfinitySpin width="200" color="#02390F" />
+    </div>
+  );
+};
 
-export default ProgressLoader
+export default ProgressLoader;

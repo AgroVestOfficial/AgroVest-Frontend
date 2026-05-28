@@ -14,8 +14,8 @@ export const WalletConnected = ({
 
   return (
     <span className="flex items-center gap-1">
-      <span className="w-6 h-6 rounded-full overflow-hidden">
-        <img src={icon} alt="Icon" className="w-full h-full object-cover" />
+      <span className="h-6 w-6 overflow-hidden rounded-full">
+        <img src={icon} alt="Icon" className="h-full w-full object-cover" />
       </span>
       <span>{formatAddress(address)}</span>
     </span>

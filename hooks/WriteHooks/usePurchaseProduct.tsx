@@ -15,7 +15,7 @@ const usePurchaseProduct = () => {
           address: getAddress(contractAddress ? contractAddress : ""),
           functionName: "purchaseProduct",
           args: [_productId],
-          value: _productPrice
+          value: _productPrice,
         });
         return result;
       } catch (err) {
@@ -26,8 +26,8 @@ const usePurchaseProduct = () => {
     [writeContractAsync, contractAddress]
   );
 
-   const purchaseMultipleProducts = useCallback(
-    async (products: { id: number, price: bigint }[]) => {
+  const purchaseMultipleProducts = useCallback(
+    async (products: { id: number; price: bigint }[]) => {
       try {
         const txResponses = await Promise.all(
           products.map(({ id, price }) => purchaseSingleProduct(id, price))
