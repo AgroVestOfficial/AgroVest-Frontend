@@ -5,10 +5,10 @@ import { useAccount } from "wagmi";
 
 const PortfolioAnalytics = () => {
   const { address } = useAccount();
-  const { data: purchases } = useGetAllPurchasedProduct(address) as {
+  const { data: purchases } = useGetAllPurchasedProduct(address) as unknown as {
     data: ProductType[];
   };
-  const { data: products } = useGetFarmProductByAddress(address) as {
+  const { data: products } = useGetFarmProductByAddress(address) as unknown as {
     data: ProductType[];
   };
 

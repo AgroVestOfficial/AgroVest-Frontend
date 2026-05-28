@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import daoAbi from "../abis/DAO.json";
 import farmAbi from "../abis/farm.json";
 import farmEscrowAbi from "../abis/farmEscrow.json";
-import investmentAbi from "../abis/investment";
+import { investmentABI as investmentAbi } from "../abis/investment";
 import tokenABi from "../abis/TokenAbi.json";
 
 export const getDAO = (providerOrSigner: ethers.Provider | ethers.Signer) =>

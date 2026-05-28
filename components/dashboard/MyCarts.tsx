@@ -25,7 +25,7 @@ import { ProductType } from "@/utils/types";
 const MyCarts = () => {
   // Hook calls
   const { address } = useAccount();
-  const { data: initialCartItems } = useGetCartProducts(address) as {
+  const { data: initialCartItems } = useGetCartProducts(address) as unknown as {
     data: ProductType[];
   };
   const { purchaseMultipleProducts } = usePurchaseProduct();

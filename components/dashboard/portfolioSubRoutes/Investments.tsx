@@ -89,7 +89,7 @@ import AddInvestment from "../AddInvestment";
 const Investments = () => {
   const path = usePathname();
   const router = useRouter();
-  const { data: investment } = useGetAllAvailableInvestment() as {
+  const { data: investment } = useGetAllAvailableInvestment() as unknown as {
     data: InvestmentType[];
   };
 

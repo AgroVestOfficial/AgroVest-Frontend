@@ -25,10 +25,10 @@ import { useAccount } from "wagmi";
 const ProductD = ({ id }: { id: string }) => {
   // Hook calls
   const address = useAccount();
-  const { data: products } = useGetFarmProductByAddress(address) as {
+  const { data: products } = useGetFarmProductByAddress(address) as unknown as {
     data: ProductType[];
   };
-  const { data: reviews } = useGetProductReview(Number(id)) as {
+  const { data: reviews } = useGetProductReview(Number(id)) as unknown as {
     data: ReviewType[];
   };
   const addProductToCart = useAddProductToCart();

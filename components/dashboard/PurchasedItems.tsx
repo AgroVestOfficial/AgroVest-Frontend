@@ -21,7 +21,7 @@ import { ProductType } from "@/utils/types";
 const PurchasedItems = () => {
   const { address } = useAccount();
   const path = usePathname();
-  const { data: purchasedItem } = useGetAllPurchasedProduct(address) as {
+  const { data: purchasedItem } = useGetAllPurchasedProduct(address) as unknown as {
     data: ProductType[];
   };
 

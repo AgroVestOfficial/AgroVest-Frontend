@@ -30,11 +30,11 @@ import { parseEther, formatEther } from "viem";
 import { FarmType, InvestmentType, InvestorsType } from "@/utils/types";
 
 const ExploreD = ({ id }: { id: string }) => {
-  const { data: allFarms } = useGetAllFarms() as { data: FarmType[] };
-  const { data: farmInvestors } = useGetFarmInvestors(Number(id)) as {
+  const { data: allFarms } = useGetAllFarms() as unknown as { data: FarmType[] };
+  const { data: farmInvestors } = useGetFarmInvestors(Number(id)) as unknown as {
     data: InvestorsType[];
   };
-  const { data: investment } = useGetAllAvailableInvestment() as {
+  const { data: investment } = useGetAllAvailableInvestment() as unknown as {
     data: InvestmentType[];
   };
   const investEthers = useInvestEthers();
@@ -161,7 +161,7 @@ const ExploreD = ({ id }: { id: string }) => {
                 <TableCell className="font-medium text-start">
                   {investor.investorAddress}
                 </TableCell>
-                <TableCell>{formatEther(Number(investor.amount))}</TableCell>
+                <TableCell>{formatEther(investor.amount)}</TableCell>
               </TableRow>
             ))}
           </TableBody>

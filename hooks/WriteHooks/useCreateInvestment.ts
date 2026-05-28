@@ -15,7 +15,7 @@ const useCreateInvestment = () => {
       _about: string,
       _minAmount: number,
       _endDate: number,
-      _owner: string
+      _owner: `0x${string}`
     ) => {
       try {
         if (!contractAddress) throw new Error("Contract address is missing.");
@@ -23,7 +23,7 @@ const useCreateInvestment = () => {
           abi: investmentABI,
           address: getAddress(contractAddress),
           functionName: "createInvestment",
-          args: [_farmId, _image, _name, _about, _minAmount, _endDate, _owner],
+          args: [BigInt(_farmId), _image, _name, _about, BigInt(_minAmount), BigInt(_endDate), _owner],
         });
         return result;
       } catch (err) {

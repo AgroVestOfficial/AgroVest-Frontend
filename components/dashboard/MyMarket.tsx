@@ -25,7 +25,7 @@ const MyMarket = () => {
 
   const { address } = useAccount();
 
-  const { data: products } = useGetFarmProductByAddress(address) as {
+  const { data: products } = useGetFarmProductByAddress(address) as unknown as {
     data: ProductType[];
   };
 

@@ -14,7 +14,7 @@ const useInvestEthers = () => {
           abi: investmentABI,
           address: getAddress(contractAddress ? contractAddress : ""),
           functionName: "investEthers",
-          args: [_farmId],
+          args: [BigInt(_farmId)],
           value: _amount,
         });
         return result;

@@ -31,6 +31,8 @@ import { defineChain } from "@reown/appkit/networks";
 
 export const crossfi = defineChain({
   id: 4157,
+  caipNetworkId: "eip155:4157",
+  chainNamespace: "eip155",
   name: "CrossFi Testnet",
   nativeCurrency: {
     decimals: 18,

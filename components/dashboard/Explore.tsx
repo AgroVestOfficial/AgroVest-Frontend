@@ -6,7 +6,7 @@ import useGetAllAvailableInvestment from "@/hooks/ReadHooks/useGetAllAvailableIn
 import { InvestmentType } from "@/utils/types";
 
 const ExploreUserFarm = () => {
-  const { data: investment } = useGetAllAvailableInvestment() as {
+  const { data: investment } = useGetAllAvailableInvestment() as unknown as {
     data: InvestmentType[];
   };
 

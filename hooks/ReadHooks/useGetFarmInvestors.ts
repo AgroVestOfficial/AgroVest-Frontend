@@ -8,7 +8,7 @@ const useGetFarmInvestors = (_farmId: number) => {
     abi: investmentABI,
     address: getAddress(contractAddress ? contractAddress : ""),
     functionName: "getAllFarmInvestors",
-    args: [_farmId],
+    args: [BigInt(_farmId)],
   });
 
   return result;

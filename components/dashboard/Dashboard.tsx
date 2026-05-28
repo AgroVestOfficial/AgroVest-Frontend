@@ -30,10 +30,10 @@ import {
 const UserDashboard = () => {
   const { data: products } = useGetAllFarmProducts() as { data: ProductType[] };
   const { data: farms } = useGetAllFarms() as { data: FarmType[] };
-  const { data: investors } = useGetAllInvestors() as { data: InvestorsType[] };
+  const { data: investors } = useGetAllInvestors() as unknown as { data: InvestorsType[] };
   const { data: totalSales } = useGetTotalSales() as { data: bigint };
   const { data: totalInvestment } = useGetTotalInvestment() as { data: bigint };
-  const { data: availableInvestment } = useGetAllAvailableInvestment() as {
+  const { data: availableInvestment } = useGetAllAvailableInvestment() as unknown as {
     data: InvestmentType[];
   };
 

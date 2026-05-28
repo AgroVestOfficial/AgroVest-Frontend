@@ -12,7 +12,7 @@ import useGetFarmProductByAddress from "@/hooks/ReadHooks/useGetFarmProductByAdd
 
 const MarketPlace = () => {
   const { address } = useAccount();
-  const { data: products } = useGetFarmProductByAddress(address) as {
+  const { data: products } = useGetFarmProductByAddress(address) as unknown as {
     data: ProductType[];
   };
   console.log("All Marketplace Products", products);

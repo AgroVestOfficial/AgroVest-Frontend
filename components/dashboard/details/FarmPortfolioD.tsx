@@ -34,11 +34,11 @@ import { FarmType, InvestmentType, InvestorsType } from "@/utils/types";
 
 const FarmPortfolioD = ({ id }: { id: string }) => {
   const { address } = useAccount();
-  const { data: allFarms } = useGetAllFarms() as { data: FarmType[] };
-  const { data: farmInvestors } = useGetFarmInvestors(Number(id)) as {
+  const { data: allFarms } = useGetAllFarms() as unknown as { data: FarmType[] };
+  const { data: farmInvestors } = useGetFarmInvestors(Number(id)) as unknown as {
     data: InvestorsType[];
   };
-  const { data: investment } = useGetAllAvailableInvestment() as {
+  const { data: investment } = useGetAllAvailableInvestment() as unknown as {
     data: InvestmentType[];
   };
   const createInvestment = useCreateInvestment();
@@ -109,7 +109,7 @@ const FarmPortfolioD = ({ id }: { id: string }) => {
           <h1 className="text-2xl text-darkgreen font-semibold">
             {Number.isNaN(Number(investmentData?.minAmount))
               ? "0"
-              : formatEther(Number(investmentData?.minAmount))}{" "}
+              : formatEther(BigInt(investmentData?.minAmount ?? 0))}{" "}
             ETH
           </h1>
         </div>
