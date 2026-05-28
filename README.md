@@ -146,8 +146,6 @@ Abel Osaretin - [@DevWizard\_](https://x.com/DevWizard_) - contact.abel321@gmail
 
 ## Acknowledgments
 
-- [Banwo Olorunsogo](https://github.com/sogobanwo)
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
