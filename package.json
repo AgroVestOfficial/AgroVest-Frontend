@@ -1,12 +1,39 @@
 {
-  "name": "frontend",
+  "name": "agrovest-frontend",
   "version": "0.1.0",
   "private": true,
+  "description": "Real World Asset platform empowering African farmers through tokenized farm investments, direct-to-consumer marketplace, and blockchain-based land ownership",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AgroVestOfficial/AgroVest-Frontend.git"
+  },
+  "keywords": [
+    "agrovest",
+    "defi",
+    "rwa",
+    "real-world-assets",
+    "agriculture",
+    "africa",
+    "web3",
+    "blockchain",
+    "crossfi",
+    "nextjs"
+  ],
+  "author": "AgroVestOfficial",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AgroVestOfficial/AgroVest-Frontend/issues"
+  },
+  "homepage": "https://github.com/AgroVestOfficial/AgroVest-Frontend#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@nextui-org/react": "^2.4.8",
@@ -42,8 +69,23 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.12",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-tailwindcss": "^3.18.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.5",
     "postcss": "^8",
+    "prettier": "^3.8.3",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,mjs}": [
+      "prettier --write"
+    ]
   }
 }

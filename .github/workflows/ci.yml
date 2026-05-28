@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_PROJECT_ID }}
+          NEXT_PUBLIC_DAO_CONTRACT_ADDRESS: ${{ secrets.NEXT_PUBLIC_DAO_CONTRACT_ADDRESS }}
+          NEXT_PUBLIC_FARM_CONTRACT_ADDRESS: ${{ secrets.NEXT_PUBLIC_FARM_CONTRACT_ADDRESS }}
+          NEXT_PUBLIC_FARM_ESCROW_CONTRACT_ADDRESS: ${{ secrets.NEXT_PUBLIC_FARM_ESCROW_CONTRACT_ADDRESS }}
+          NEXT_PUBLIC_INVESTMENT_CONTRACT_ADDRESS: ${{ secrets.NEXT_PUBLIC_INVESTMENT_CONTRACT_ADDRESS }}
+          NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS: ${{ secrets.NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS }}
+          NEXT_PUBLIC_PINATA_API_KEY: ${{ secrets.NEXT_PUBLIC_PINATA_API_KEY }}
+          NEXT_PUBLIC_PINATA_API_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_PINATA_API_SECRET_KEY }}

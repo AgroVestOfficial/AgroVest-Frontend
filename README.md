@@ -2,23 +2,6 @@
 
 <a id="readme-top"></a>
 
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -26,12 +9,15 @@
     <img src="images/agrovestLogo.png" alt="Logo">
   </a>
 
+[![CI](https://github.com/AgroVestOfficial/AgroVest-Frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/AgroVestOfficial/AgroVest-Frontend/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white)
+
   <p align="center">
     AgroVest is a Real World Asset platform that empowers African farmers by tokenizing their farm business, helping them sell products directly to consumers, and securing investments opportunities to enable them grow their farm.
 
 </div>
-
-<!-- GETTING STARTED -->
 
 ## Inspiration
 
@@ -101,20 +87,6 @@ Agro Vest solves land ownership challenges by leveraging blockchain technology t
 
   <br/>
 
-<!-- ## How We Built It
-
-- **Solidity Smart Contracts**
-- **Scaffold ETH**
-- **Optimisim**
-- **The Graph**
-- **Next Js**
-
-## Challenges We Ran Into
-
-- **Circles**::
-- **The Graph**:
-- **Scaffold ETH**: -->
-
 ## Smart Contract
 
 [Farm CA](https://test.xfiscan.com/address/0x26B8b62e3476a01227cb5DAB00d3A38F15F27D00)
@@ -128,7 +100,52 @@ Agro Vest solves land ownership challenges by leveraging blockchain technology t
 
 [ERC20 Token CA](https://test.xfiscan.com/token/0x994f29ce3A1d753983cd4Ebb0D84A1CE75ba5e1b)
 
-<!-- ROADMAP -->
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) 18 or later
+- npm (comes with Node.js)
+- A Web3 wallet (e.g., [MetaMask](https://metamask.io/))
+- [Reown Project ID](https://cloud.reown.com)
+
+### Installation
+
+1. Fork and clone the repository:
+   ```bash
+   git clone https://github.com/AgroVestOfficial/AgroVest-Frontend.git
+   cd AgroVest-Frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Fill in your Reown project ID and contract addresses in `.env.local`.
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Available Scripts
+
+| Script | Description |
+| --- | --- |
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm run type-check` | Run TypeScript type checking |
+| `npm run format` | Format all files with Prettier |
+| `npm run format:check` | Check formatting without writing |
 
 ## Roadmap
 
@@ -136,47 +153,14 @@ Agro Vest solves land ownership challenges by leveraging blockchain technology t
 - Supply Chain Setup
 - Full Account Abstraction
 
-<!-- CONTACT -->
+## Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on how to get started.
 
 ## Contact
 
 Abel Osaretin - [@DevWizard\_](https://x.com/DevWizard_) - contact.abel321@gmail.com
 
-<!-- ACKNOWLEDGMENTS -->
-
 ## Acknowledgments
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com
