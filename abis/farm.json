@@ -666,7 +666,7 @@
   },
   {
     "inputs": [],
-    "name": "retrunFarms",
+    "name": "get_all_farms",
     "outputs": [
       {
         "components": [
