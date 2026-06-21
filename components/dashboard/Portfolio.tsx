@@ -130,7 +130,7 @@ const UserPortfolio = () => {
       </section>
 
       <div className="grid w-full gap-8 md:grid-cols-2">
-        {userFarm?.length == 0 ? (
+        {userFarm?.length === 0 ? (
           <h1 className="mt-8 flex h-full w-full items-center justify-center text-xl font-medium text-darkgreen md:text-2xl">
             You have not registered a farm
           </h1>
