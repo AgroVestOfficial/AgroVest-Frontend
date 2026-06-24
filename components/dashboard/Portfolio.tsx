@@ -43,7 +43,7 @@ const UserPortfolio = () => {
   const [farmLocation, setFarmLocation] = useState("");
 
   const handleSelectImage = async ({ target }: { target: { files: FileList | null } }) => {
-    const file = target.files[0];
+    const file = target.files?.[0];
     if (!file) return;
 
     setSelectedFile(file);
