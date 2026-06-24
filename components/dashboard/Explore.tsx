@@ -2,15 +2,43 @@
 import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { QueryLoader, QueryError } from "@/components/shared/QueryState";
 import useGetAllAvailableInvestment from "@/hooks/ReadHooks/useGetAllAvailableInvestment";
 import { InvestmentType } from "@/utils/types";
 
 const ExploreUserFarm = () => {
-  const { data: investment } = useGetAllAvailableInvestment() as unknown as {
-    data: InvestmentType[];
+  const { data: investment, isLoading, isError } = useGetAllAvailableInvestment() as unknown as {
+    data: InvestmentType[]; isLoading: boolean; isError: boolean;
   };
 
   const router = useRouter();
+
+  if (isLoading) {
+    return (
+      <section className="flex w-full flex-col gap-6 py-4">
+        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Investments</h1>
+        <div className="grid w-full gap-8 md:grid-cols-2">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="flex flex-col gap-2 rounded-[10px] bg-gray-100 p-4 shadow-lg">
+              <QueryLoader className="h-[200px] w-full" />
+              <QueryLoader className="h-4 w-3/4" />
+              <QueryLoader className="h-3 w-full" />
+              <QueryLoader className="h-10 w-28" />
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section className="flex w-full flex-col gap-6 py-4">
+        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Investments</h1>
+        <QueryError message="Failed to load investment opportunities. Please try again later." />
+      </section>
+    );
+  }
 
   return (
     <section className="flex w-full flex-col gap-6 py-4">

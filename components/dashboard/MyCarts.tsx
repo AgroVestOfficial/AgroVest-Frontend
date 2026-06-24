@@ -15,6 +15,7 @@ import {
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 import { useAccount } from "wagmi";
+import { QueryLoader, QueryError } from "@/components/shared/QueryState";
 import useGetCartProducts from "@/hooks/ReadHooks/useGetCartProducts";
 import { formatEther } from "viem";
 import usePurchaseProduct from "@/hooks/WriteHooks/usePurchaseProduct";
@@ -25,8 +26,8 @@ import { ProductType } from "@/utils/types";
 const MyCarts = () => {
   // Hook calls
   const { address } = useAccount();
-  const { data: initialCartItems } = useGetCartProducts(address) as unknown as {
-    data: ProductType[];
+  const { data: initialCartItems, isLoading, isError } = useGetCartProducts(address) as unknown as {
+    data: ProductType[]; isLoading: boolean; isError: boolean;
   };
   const { purchaseMultipleProducts } = usePurchaseProduct();
   const removeProduct = useRemoveProductFromCart();
@@ -91,6 +92,39 @@ const MyCarts = () => {
   const total = useMemo(() => {
     return subtotal - discount;
   }, [subtotal, discount]);
+
+  if (isLoading) {
+    return (
+      <section className="flex w-full flex-col gap-6 py-4">
+        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Transactions</h1>
+        <div className="flex w-full gap-0 md:ml-3">
+          <div className="bg-darkgreen px-4 py-2 text-base font-medium text-gray-200">Cart</div>
+          <div className="bg-lightgreen px-4 py-2 text-base font-medium text-darkgreen">Purchased</div>
+        </div>
+        <div className="flex w-full flex-col items-start gap-6 md:flex-row">
+          <div className="flex-1 rounded bg-gray-100 p-4">
+            <QueryLoader className="h-40 w-full" />
+          </div>
+          <div className="flex w-full flex-col rounded bg-gray-100 md:w-[35%]">
+            <QueryLoader className="h-40 w-full" />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section className="flex w-full flex-col gap-6 py-4">
+        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Transactions</h1>
+        <div className="flex w-full gap-0 md:ml-3">
+          <div className="bg-darkgreen px-4 py-2 text-base font-medium text-gray-200">Cart</div>
+          <div className="bg-lightgreen px-4 py-2 text-base font-medium text-darkgreen">Purchased</div>
+        </div>
+        <QueryError message="Failed to load cart items. Please try again later." />
+      </section>
+    );
+  }
 
   return (
     <section className="flex w-full flex-col gap-6 py-4">

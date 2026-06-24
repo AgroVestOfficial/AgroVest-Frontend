@@ -6,14 +6,26 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { formatEther } from "viem";
+import { QueryLoader } from "@/components/shared/QueryState";
 
-const Products = ({ title, data }: { title: string; data: ProductType[] }) => {
+const Products = ({ title, data, isLoading }: { title: string; data: ProductType[]; isLoading?: boolean }) => {
   const router = useRouter();
   return (
     <section className="mb-20 flex w-full flex-col px-2">
       <main className="flex w-full flex-col gap-6">
         <h1 className="text-xl font-medium text-darkgreen md:text-2xl">{title}</h1>
-        {data?.length == 0 ? (
+        {isLoading ? (
+          <div className="grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="flex flex-col gap-2 rounded-[10px] bg-gray-100 p-4 shadow-lg">
+                <QueryLoader className="h-[150px] w-full" />
+                <QueryLoader className="h-4 w-3/4" />
+                <QueryLoader className="h-3 w-full" />
+                <QueryLoader className="h-10 w-40" />
+              </div>
+            ))}
+          </div>
+        ) : data?.length == 0 ? (
           <h1 className="mt-8 flex h-full w-full items-center justify-center text-xl font-medium text-darkgreen md:text-2xl">
             You don&apos;t have a product yet
           </h1>
