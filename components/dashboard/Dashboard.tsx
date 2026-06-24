@@ -24,13 +24,43 @@ import useGetAllAvailableInvestment from "@/hooks/ReadHooks/useGetAllAvailableIn
 import { FarmType, InvestmentType, InvestorsType, ProductType } from "@/utils/types";
 
 const UserDashboard = () => {
-  const { data: products, isLoading: productsLoading, isError: productsError } = useGetAllFarmProducts() as { data: ProductType[]; isLoading: boolean; isError: boolean };
-  const { data: farms, isLoading: farmsLoading, isError: farmsError } = useGetAllFarms() as { data: FarmType[]; isLoading: boolean; isError: boolean };
-  const { data: investors, isLoading: investorsLoading, isError: investorsError } = useGetAllInvestors() as unknown as { data: InvestorsType[]; isLoading: boolean; isError: boolean };
-  const { data: totalSales, isLoading: salesLoading, isError: salesError } = useGetTotalSales() as { data: bigint; isLoading: boolean; isError: boolean };
-  const { data: totalInvestment, isLoading: investmentLoading, isError: investmentError } = useGetTotalInvestment() as { data: bigint; isLoading: boolean; isError: boolean };
-  const { data: availableInvestment, isLoading: availInvestLoading, isError: availInvestError } = useGetAllAvailableInvestment() as unknown as {
-    data: InvestmentType[]; isLoading: boolean; isError: boolean;
+  const {
+    data: products,
+    isLoading: productsLoading,
+    isError: productsError,
+  } = useGetAllFarmProducts() as { data: ProductType[]; isLoading: boolean; isError: boolean };
+  const {
+    data: farms,
+    isLoading: farmsLoading,
+    isError: farmsError,
+  } = useGetAllFarms() as { data: FarmType[]; isLoading: boolean; isError: boolean };
+  const {
+    data: investors,
+    isLoading: investorsLoading,
+    isError: investorsError,
+  } = useGetAllInvestors() as unknown as {
+    data: InvestorsType[];
+    isLoading: boolean;
+    isError: boolean;
+  };
+  const {
+    data: totalSales,
+    isLoading: salesLoading,
+    isError: salesError,
+  } = useGetTotalSales() as { data: bigint; isLoading: boolean; isError: boolean };
+  const {
+    data: totalInvestment,
+    isLoading: investmentLoading,
+    isError: investmentError,
+  } = useGetTotalInvestment() as { data: bigint; isLoading: boolean; isError: boolean };
+  const {
+    data: availableInvestment,
+    isLoading: availInvestLoading,
+    isError: availInvestError,
+  } = useGetAllAvailableInvestment() as unknown as {
+    data: InvestmentType[];
+    isLoading: boolean;
+    isError: boolean;
   };
 
   return (
