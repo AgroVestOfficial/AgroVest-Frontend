@@ -21,7 +21,8 @@ import { formatEther } from "viem";
 import usePurchaseProduct from "@/hooks/WriteHooks/usePurchaseProduct";
 import { toast } from "sonner";
 import useRemoveProductFromCart from "@/hooks/WriteHooks/useRemoveProductFromCart";
-import { ProductType } from "@/utils/types";
+import useGetAllFarms from "@/hooks/ReadHooks/useGetAllFarms";
+import { FarmType, ProductType } from "@/utils/types";
 
 const MyCarts = () => {
   // Hook calls
@@ -37,6 +38,7 @@ const MyCarts = () => {
   };
   const { purchaseMultipleProducts } = usePurchaseProduct();
   const removeProduct = useRemoveProductFromCart();
+  const { data: farms } = useGetAllFarms() as unknown as { data: FarmType[] };
 
   const productsToPurchase = initialCartItems?.map(
     (product: { product_id: number; product_price: number }) => ({
@@ -194,7 +196,13 @@ const MyCarts = () => {
                       </div>
                       <div className="flex flex-col gap-1">
                         <h3 className="text-sm font-semibold text-gray-700">{item.product_name}</h3>
-                        <p className="text-xs text-gray-600">Obasanjo Farm</p>
+                        <p className="text-xs text-gray-600">
+                          {farms?.find(
+                            (f: FarmType) =>
+                              f.farmerAddress.toLowerCase() ===
+                              String(item.product_owner).toLowerCase()
+                          )?.business_name ?? "Unknown Farm"}
+                        </p>
                       </div>
                     </div>
                   </TableCell>
