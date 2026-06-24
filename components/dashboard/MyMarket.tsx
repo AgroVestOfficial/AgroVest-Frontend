@@ -26,8 +26,14 @@ const MyMarket = () => {
 
   const { address } = useAccount();
 
-  const { data: products, isLoading, isError } = useGetFarmProductByAddress(address) as unknown as {
-    data: ProductType[]; isLoading: boolean; isError: boolean;
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useGetFarmProductByAddress(address) as unknown as {
+    data: ProductType[];
+    isLoading: boolean;
+    isError: boolean;
   };
 
   const path = usePathname();

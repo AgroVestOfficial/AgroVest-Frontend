@@ -22,17 +22,27 @@ import { ProductType } from "@/utils/types";
 const PurchasedItems = () => {
   const { address } = useAccount();
   const path = usePathname();
-  const { data: purchasedItem, isLoading, isError } = useGetAllPurchasedProduct(address) as unknown as {
-    data: ProductType[]; isLoading: boolean; isError: boolean;
+  const {
+    data: purchasedItem,
+    isLoading,
+    isError,
+  } = useGetAllPurchasedProduct(address) as unknown as {
+    data: ProductType[];
+    isLoading: boolean;
+    isError: boolean;
   };
 
   if (isLoading) {
     return (
       <section className="flex w-full flex-col gap-6 py-4">
-        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Transactions</h1>
+        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">
+          Transactions
+        </h1>
         <div className="flex w-full gap-0 md:ml-3">
           <div className="bg-lightgreen px-4 py-2 text-base font-medium text-darkgreen">Cart</div>
-          <div className="bg-darkgreen px-4 py-2 text-base font-medium text-gray-200">Purchased</div>
+          <div className="bg-darkgreen px-4 py-2 text-base font-medium text-gray-200">
+            Purchased
+          </div>
         </div>
         <div className="w-full flex-1 rounded bg-gray-100 p-4">
           <QueryLoader className="h-40 w-full" />
@@ -44,10 +54,14 @@ const PurchasedItems = () => {
   if (isError) {
     return (
       <section className="flex w-full flex-col gap-6 py-4">
-        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Transactions</h1>
+        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">
+          Transactions
+        </h1>
         <div className="flex w-full gap-0 md:ml-3">
           <div className="bg-lightgreen px-4 py-2 text-base font-medium text-darkgreen">Cart</div>
-          <div className="bg-darkgreen px-4 py-2 text-base font-medium text-gray-200">Purchased</div>
+          <div className="bg-darkgreen px-4 py-2 text-base font-medium text-gray-200">
+            Purchased
+          </div>
         </div>
         <QueryError message="Failed to load purchased items. Please try again later." />
       </section>

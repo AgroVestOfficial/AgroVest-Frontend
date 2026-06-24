@@ -8,7 +8,15 @@ import React from "react";
 import { formatEther } from "viem";
 import { QueryLoader } from "@/components/shared/QueryState";
 
-const Products = ({ title, data, isLoading }: { title: string; data: ProductType[]; isLoading?: boolean }) => {
+const Products = ({
+  title,
+  data,
+  isLoading,
+}: {
+  title: string;
+  data: ProductType[];
+  isLoading?: boolean;
+}) => {
   const router = useRouter();
   return (
     <section className="mb-20 flex w-full flex-col px-2">

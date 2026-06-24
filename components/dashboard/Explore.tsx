@@ -7,8 +7,14 @@ import useGetAllAvailableInvestment from "@/hooks/ReadHooks/useGetAllAvailableIn
 import { InvestmentType } from "@/utils/types";
 
 const ExploreUserFarm = () => {
-  const { data: investment, isLoading, isError } = useGetAllAvailableInvestment() as unknown as {
-    data: InvestmentType[]; isLoading: boolean; isError: boolean;
+  const {
+    data: investment,
+    isLoading,
+    isError,
+  } = useGetAllAvailableInvestment() as unknown as {
+    data: InvestmentType[];
+    isLoading: boolean;
+    isError: boolean;
   };
 
   const router = useRouter();

@@ -12,17 +12,27 @@ import useGetFarmProductByAddress from "@/hooks/ReadHooks/useGetFarmProductByAdd
 
 const MarketPlace = () => {
   const { address } = useAccount();
-  const { data: products, isLoading, isError } = useGetFarmProductByAddress(address) as unknown as {
-    data: ProductType[]; isLoading: boolean; isError: boolean;
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useGetFarmProductByAddress(address) as unknown as {
+    data: ProductType[];
+    isLoading: boolean;
+    isError: boolean;
   };
   const path = usePathname();
 
   if (isLoading) {
     return (
       <section className="flex w-full flex-col gap-6 py-4">
-        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Market Place</h1>
+        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">
+          Market Place
+        </h1>
         <div className="flex w-full gap-4">
-          <div className="rounded bg-darkgreen px-4 py-2 text-base font-medium text-lightgreen">All Products</div>
+          <div className="rounded bg-darkgreen px-4 py-2 text-base font-medium text-lightgreen">
+            All Products
+          </div>
           <div className="rounded px-4 py-2 text-base font-medium text-darkgreen">My Products</div>
         </div>
         <Categories />
@@ -43,9 +53,13 @@ const MarketPlace = () => {
   if (isError) {
     return (
       <section className="flex w-full flex-col gap-6 py-4">
-        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">Market Place</h1>
+        <h1 className="text-base font-semibold uppercase text-darkgreen md:text-xl">
+          Market Place
+        </h1>
         <div className="flex w-full gap-4">
-          <div className="rounded bg-darkgreen px-4 py-2 text-base font-medium text-lightgreen">All Products</div>
+          <div className="rounded bg-darkgreen px-4 py-2 text-base font-medium text-lightgreen">
+            All Products
+          </div>
           <div className="rounded px-4 py-2 text-base font-medium text-darkgreen">My Products</div>
         </div>
         <Categories />
