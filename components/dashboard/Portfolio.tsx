@@ -38,10 +38,18 @@ const UserPortfolio = () => {
   const [farmOwner] = useState(address);
   const [farmLocation, setFarmLocation] = useState("");
 
-  const handleSelectImage = async ({ target }: { target: any }) => {
-    setSelectedFile(target.files[0]);
-    const imageHash = await uploadImageToIPFS(target.files[0]);
-    setProductImage(imageHash);
+  const handleSelectImage = async ({ target }: { target: { files: FileList } }) => {
+    const file = target.files[0];
+    if (!file) return;
+
+    setSelectedFile(file);
+    try {
+      const imageHash = await uploadImageToIPFS(file);
+      setProductImage(imageHash);
+    } catch (error) {
+      toast.error("Failed to upload image. Please try again.");
+      setSelectedFile(null);
+    }
   };
 
   const handleSubmit = async (e: FormEvent) => {
