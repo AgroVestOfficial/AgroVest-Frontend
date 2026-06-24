@@ -40,7 +40,7 @@ const AddInvestment = () => {
     try {
       const imageHash = await uploadImageToIPFS(file);
       setInvestmentImage(imageHash);
-    } catch (error) {
+    } catch {
       toast.error("Failed to upload image. Please try again.");
       setSelectedFile(null);
     }
