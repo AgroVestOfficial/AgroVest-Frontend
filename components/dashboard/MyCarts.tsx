@@ -32,9 +32,10 @@ const MyCarts = () => {
   const removeProduct = useRemoveProductFromCart();
 
   const productsToPurchase = initialCartItems?.map(
-    (product: { product_id: number; product_price: number }) => ({
+    (product: { product_id: number; product_price: number; product_owner: number }) => ({
       id: Number(product.product_id),
       price: BigInt(product.product_price),
+      farmId: Number(product.product_owner),
     })
   );
 

@@ -27,7 +27,7 @@ const usePurchaseProduct = () => {
   );
 
   const purchaseMultipleProducts = useCallback(
-    async (products: { id: number; price: bigint }[]) => {
+    async (products: { id: number; price: bigint; farmId: number }[]) => {
       try {
         const txResponses = await Promise.all(
           products.map(({ id, price }) => purchaseSingleProduct(id, price))
