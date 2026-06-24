@@ -32,10 +32,18 @@ const AddInvestment = () => {
   const [investmentTarget, setInvestmentTarget] = useState("");
   const [investmentEndDate, setInvestmentEndDate] = useState("");
 
-  const handleSelectImage = async ({ target }: { target: any }) => {
-    setSelectedFile(target.files[0]);
-    const imageHash = await uploadImageToIPFS(target.files[0]);
-    setInvestmentImage(imageHash);
+  const handleSelectImage = async ({ target }: { target: { files: FileList | null } }) => {
+    const file = target.files?.[0];
+    if (!file) return;
+
+    setSelectedFile(file);
+    try {
+      const imageHash = await uploadImageToIPFS(file);
+      setInvestmentImage(imageHash);
+    } catch {
+      toast.error("Failed to upload image. Please try again.");
+      setSelectedFile(null);
+    }
   };
 
   const handleSubmit = async (e: FormEvent) => {
