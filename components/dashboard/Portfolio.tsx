@@ -45,7 +45,7 @@ const UserPortfolio = () => {
     try {
       const imageHash = await uploadImageToIPFS(file);
       setProductImage(imageHash);
-    } catch (error) {
+    } catch {
       toast.error("Failed to upload image. Please try again.");
       setSelectedFile(null);
     }
