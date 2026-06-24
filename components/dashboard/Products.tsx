@@ -20,9 +20,9 @@ const Products = ({ title, data }: { title: string; data: ProductType[] }) => {
         ) : (
           <div className="grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3">
             {data?.map(
-              (product: ProductType, index: number): JSX.Element => (
+              (product: ProductType): JSX.Element => (
                 <div
-                  key={index}
+                  key={Number(product.product_id)}
                   className="flex flex-col gap-2 rounded-[10px] bg-gray-100 p-4 shadow-lg"
                 >
                   <div className="h-[150px] w-full">

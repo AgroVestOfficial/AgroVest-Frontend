@@ -148,8 +148,8 @@ const ExploreD = ({ id }: { id: string }) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {farmInvestors?.map((investor: any, index: number) => (
-              <TableRow key={index} className="text-gray-600">
+            {farmInvestors?.map((investor: any) => (
+              <TableRow key={Number(investor.id)} className="text-gray-600">
                 <TableCell>{Number(investor.id)}</TableCell>
 
                 <TableCell className="text-start font-medium">{investor.investorAddress}</TableCell>
