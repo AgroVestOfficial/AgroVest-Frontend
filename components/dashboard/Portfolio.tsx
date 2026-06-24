@@ -24,7 +24,11 @@ import { FarmType } from "@/utils/types";
 
 const UserPortfolio = () => {
   const { address } = useAccount();
-  const { data: allFarms, isLoading, isError } = useGetAllFarms() as unknown as { data: FarmType[]; isLoading: boolean; isError: boolean };
+  const {
+    data: allFarms,
+    isLoading,
+    isError,
+  } = useGetAllFarms() as unknown as { data: FarmType[]; isLoading: boolean; isError: boolean };
   const registerFarm = useRegisterFarm();
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -38,7 +42,7 @@ const UserPortfolio = () => {
   const [farmOwner] = useState(address);
   const [farmLocation, setFarmLocation] = useState("");
 
-  const handleSelectImage = async ({ target }: { target: { files: FileList } }) => {
+  const handleSelectImage = async ({ target }: { target: { files: FileList | null } }) => {
     const file = target.files[0];
     if (!file) return;
 

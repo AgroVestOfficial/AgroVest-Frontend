@@ -32,7 +32,7 @@ const AddInvestment = () => {
   const [investmentTarget, setInvestmentTarget] = useState("");
   const [investmentEndDate, setInvestmentEndDate] = useState("");
 
-  const handleSelectImage = async ({ target }: { target: { files: FileList } }) => {
+  const handleSelectImage = async ({ target }: { target: { files: FileList | null } }) => {
     const file = target.files[0];
     if (!file) return;
 
