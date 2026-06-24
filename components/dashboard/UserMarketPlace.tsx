@@ -93,7 +93,7 @@ const MarketPlace = () => {
 
       <Categories />
 
-      <Products title="All Products" data={products} isLoading={isLoading} />
+      <Products title="All Products" data={products} />
     </section>
   );
 };

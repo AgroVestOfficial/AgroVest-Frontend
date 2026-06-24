@@ -1,5 +1,5 @@
-export function QueryLoader({ className = "" }: { className?: string }) {
-  return <div className={`animate-pulse rounded bg-gray-200 ${className || "h-20 w-full"}`} />;
+export function QueryLoader({ className = "h-20 w-full" }: { className?: string }) {
+  return <div className={`animate-pulse rounded bg-gray-200 ${className}`} />;
 }
 
 export function QueryError({ message, className = "" }: { message: string; className?: string }) {
