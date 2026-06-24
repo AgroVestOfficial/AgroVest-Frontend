@@ -3,6 +3,7 @@
 "use client";
 import React from "react";
 import dynamic from "next/dynamic";
+import { QueryLoader, QueryError } from "@/components/shared/QueryState";
 const Barchart = dynamic(() => import("./charts/BarChart"), { ssr: false });
 const Piechart = dynamic(() => import("./charts/PieChart"), { ssr: false });
 import {
@@ -23,13 +24,43 @@ import useGetAllAvailableInvestment from "@/hooks/ReadHooks/useGetAllAvailableIn
 import { FarmType, InvestmentType, InvestorsType, ProductType } from "@/utils/types";
 
 const UserDashboard = () => {
-  const { data: products } = useGetAllFarmProducts() as { data: ProductType[] };
-  const { data: farms } = useGetAllFarms() as { data: FarmType[] };
-  const { data: investors } = useGetAllInvestors() as unknown as { data: InvestorsType[] };
-  const { data: totalSales } = useGetTotalSales() as { data: bigint };
-  const { data: totalInvestment } = useGetTotalInvestment() as { data: bigint };
-  const { data: availableInvestment } = useGetAllAvailableInvestment() as unknown as {
+  const {
+    data: products,
+    isLoading: productsLoading,
+    isError: productsError,
+  } = useGetAllFarmProducts() as { data: ProductType[]; isLoading: boolean; isError: boolean };
+  const {
+    data: farms,
+    isLoading: farmsLoading,
+    isError: farmsError,
+  } = useGetAllFarms() as { data: FarmType[]; isLoading: boolean; isError: boolean };
+  const {
+    data: investors,
+    isLoading: investorsLoading,
+    isError: investorsError,
+  } = useGetAllInvestors() as unknown as {
+    data: InvestorsType[];
+    isLoading: boolean;
+    isError: boolean;
+  };
+  const {
+    data: totalSales,
+    isLoading: salesLoading,
+    isError: salesError,
+  } = useGetTotalSales() as { data: bigint; isLoading: boolean; isError: boolean };
+  const {
+    data: totalInvestment,
+    isLoading: investmentLoading,
+    isError: investmentError,
+  } = useGetTotalInvestment() as { data: bigint; isLoading: boolean; isError: boolean };
+  const {
+    data: availableInvestment,
+    isLoading: availInvestLoading,
+    isError: availInvestError,
+  } = useGetAllAvailableInvestment() as unknown as {
     data: InvestmentType[];
+    isLoading: boolean;
+    isError: boolean;
   };
 
   return (
@@ -39,27 +70,57 @@ const UserDashboard = () => {
       <main className="grid w-full gap-4 md:grid-cols-3 lg:grid-cols-5">
         <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] bg-gray-100 p-3">
           <h4 className="font-light text-gray-800">Total Businesses</h4>
-          <h1 className="text-2xl font-semibold text-darkgreen">{farms?.length}</h1>
+          {farmsLoading ? (
+            <QueryLoader className="h-8 w-16" />
+          ) : farmsError ? (
+            <QueryError message="Failed to load" />
+          ) : (
+            <h1 className="text-2xl font-semibold text-darkgreen">{farms?.length}</h1>
+          )}
         </div>
         <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] bg-gray-100 p-3">
           <h4 className="font-light text-gray-800">Total Investors</h4>
-          <h1 className="text-2xl font-semibold text-darkgreen">{investors?.length}</h1>
+          {investorsLoading ? (
+            <QueryLoader className="h-8 w-16" />
+          ) : investorsError ? (
+            <QueryError message="Failed to load" />
+          ) : (
+            <h1 className="text-2xl font-semibold text-darkgreen">{investors?.length}</h1>
+          )}
         </div>
         <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] bg-gray-100 p-3">
           <h4 className="font-light text-gray-800">Total Investments</h4>
-          <h1 className="text-2xl font-semibold text-darkgreen">
-            {totalInvestment ? formatEther(totalInvestment) : "0"} ETH
-          </h1>
+          {investmentLoading ? (
+            <QueryLoader className="h-8 w-16" />
+          ) : investmentError ? (
+            <QueryError message="Failed to load" />
+          ) : (
+            <h1 className="text-2xl font-semibold text-darkgreen">
+              {totalInvestment ? formatEther(totalInvestment) : "0"} ETH
+            </h1>
+          )}
         </div>
         <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] bg-gray-100 p-3">
           <h4 className="font-light text-gray-800">Total Products</h4>
-          <h1 className="text-2xl font-semibold text-darkgreen">{products?.length}</h1>
+          {productsLoading ? (
+            <QueryLoader className="h-8 w-16" />
+          ) : productsError ? (
+            <QueryError message="Failed to load" />
+          ) : (
+            <h1 className="text-2xl font-semibold text-darkgreen">{products?.length}</h1>
+          )}
         </div>
         <div className="flex flex-col items-center justify-center gap-2 rounded-[5px] bg-gray-100 p-3">
           <h4 className="font-light text-gray-800">Total Sales</h4>
-          <h1 className="text-2xl font-semibold text-darkgreen">
-            {totalSales ? formatEther(totalSales) : "0"} ETH
-          </h1>
+          {salesLoading ? (
+            <QueryLoader className="h-8 w-16" />
+          ) : salesError ? (
+            <QueryError message="Failed to load" />
+          ) : (
+            <h1 className="text-2xl font-semibold text-darkgreen">
+              {totalSales ? formatEther(totalSales) : "0"} ETH
+            </h1>
+          )}
         </div>
       </main>
 
@@ -79,34 +140,40 @@ const UserDashboard = () => {
       {/* table  */}
       <main className="flex w-full flex-col gap-4 rounded-[5px] bg-gray-100 p-4">
         <h2 className="text-center text-lg font-medium uppercase text-gray-700">Recent Business</h2>
-        <Table>
-          <TableHeader>
-            <TableRow className="text-gray-800">
-              <TableHead className="text-start">Farm Name</TableHead>
-              <TableHead className="text-center">Fund&apos;s Target</TableHead>
-              <TableHead className="text-center">Investors</TableHead>
-              <TableHead className="text-center">Amount Raised</TableHead>
-              <TableHead className="text-center">Amount Remaining</TableHead>
-              <TableHead className="text-center">Status</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {availableInvestment?.slice(0, 3).map((farm: InvestmentType, index: number) => (
-              <TableRow key={index} className="text-gray-600">
-                <TableCell className="text-start font-medium">{farm.name}</TableCell>
-                <TableCell className="text-center">{Number(farm.minAmount)} ETH</TableCell>
-                <TableCell className="text-center">{Number(farm.farmInvestorCount)}</TableCell>
-                <TableCell className="text-center">{Number(farm.amountRaised)} ETH</TableCell>
-                <TableCell className="text-center">
-                  {Number(farm.minAmount) - Number(farm.amountRaised)} ETH
-                </TableCell>
-                <TableCell className="text-center">
-                  {farm.minAmount - farm.amountRaised > 0 ? "Ongoing" : "Ended"}
-                </TableCell>
+        {availInvestLoading ? (
+          <QueryLoader className="h-40 w-full" />
+        ) : availInvestError ? (
+          <QueryError message="Failed to load investment opportunities" />
+        ) : (
+          <Table>
+            <TableHeader>
+              <TableRow className="text-gray-800">
+                <TableHead className="text-start">Farm Name</TableHead>
+                <TableHead className="text-center">Fund&apos;s Target</TableHead>
+                <TableHead className="text-center">Investors</TableHead>
+                <TableHead className="text-center">Amount Raised</TableHead>
+                <TableHead className="text-center">Amount Remaining</TableHead>
+                <TableHead className="text-center">Status</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {availableInvestment?.slice(0, 3).map((farm: InvestmentType, index: number) => (
+                <TableRow key={index} className="text-gray-600">
+                  <TableCell className="text-start font-medium">{farm.name}</TableCell>
+                  <TableCell className="text-center">{Number(farm.minAmount)} ETH</TableCell>
+                  <TableCell className="text-center">{Number(farm.farmInvestorCount)}</TableCell>
+                  <TableCell className="text-center">{Number(farm.amountRaised)} ETH</TableCell>
+                  <TableCell className="text-center">
+                    {Number(farm.minAmount) - Number(farm.amountRaised)} ETH
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {farm.minAmount - farm.amountRaised > 0 ? "Ongoing" : "Ended"}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )}
       </main>
     </section>
   );

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 import Products from "./Products";
+import { QueryLoader, QueryError } from "@/components/shared/QueryState";
 import {
   Modal,
   ModalContent,
@@ -25,8 +26,14 @@ const MyMarket = () => {
 
   const { address } = useAccount();
 
-  const { data: products } = useGetFarmProductByAddress(address) as unknown as {
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useGetFarmProductByAddress(address) as unknown as {
     data: ProductType[];
+    isLoading: boolean;
+    isError: boolean;
   };
 
   const path = usePathname();
@@ -100,7 +107,22 @@ const MyMarket = () => {
         </Button>
       </div>
 
-      <Products title="My Products" data={products} />
+      {isLoading ? (
+        <div className="grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="flex flex-col gap-2 rounded-[10px] bg-gray-100 p-4 shadow-lg">
+              <QueryLoader className="h-[150px] w-full" />
+              <QueryLoader className="h-4 w-3/4" />
+              <QueryLoader className="h-3 w-full" />
+              <QueryLoader className="h-10 w-40" />
+            </div>
+          ))}
+        </div>
+      ) : isError ? (
+        <QueryError message="Failed to load your products. Please try again later." />
+      ) : (
+        <Products title="My Products" data={products} />
+      )}
 
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>

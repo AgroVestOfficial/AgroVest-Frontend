@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
+import { QueryLoader, QueryError } from "@/components/shared/QueryState";
 import PortfolioAnalytics from "./portfolioSubRoutes/PortfolioAnalytics";
 import {
   Modal,
@@ -23,7 +24,11 @@ import { FarmType } from "@/utils/types";
 
 const UserPortfolio = () => {
   const { address } = useAccount();
-  const { data: allFarms } = useGetAllFarms() as unknown as { data: FarmType[] };
+  const {
+    data: allFarms,
+    isLoading,
+    isError,
+  } = useGetAllFarms() as unknown as { data: FarmType[]; isLoading: boolean; isError: boolean };
   const registerFarm = useRegisterFarm();
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -130,7 +135,20 @@ const UserPortfolio = () => {
       </section>
 
       <div className="grid w-full gap-8 md:grid-cols-2">
-        {userFarm?.length == 0 ? (
+        {isLoading ? (
+          Array.from({ length: 2 }).map((_, i) => (
+            <div key={i} className="flex flex-col gap-2 rounded-[10px] bg-gray-100 p-4 shadow-lg">
+              <QueryLoader className="h-[200px] w-full" />
+              <QueryLoader className="h-4 w-3/4" />
+              <QueryLoader className="h-3 w-full" />
+              <QueryLoader className="h-3 w-2/3" />
+              <QueryLoader className="h-3 w-1/2" />
+              <QueryLoader className="h-10 w-28" />
+            </div>
+          ))
+        ) : isError ? (
+          <QueryError message="Failed to load farms. Please try again later." />
+        ) : userFarm?.length == 0 ? (
           <h1 className="mt-8 flex h-full w-full items-center justify-center text-xl font-medium text-darkgreen md:text-2xl">
             You have not registered a farm
           </h1>
