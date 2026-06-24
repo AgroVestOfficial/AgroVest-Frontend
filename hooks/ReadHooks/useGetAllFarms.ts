@@ -7,7 +7,7 @@ const useGetAllFarms = () => {
   const result = useReadContract({
     abi: farmAbi,
     address: getAddress(contractAddress ? contractAddress : ""),
-    functionName: "retrunFarms",
+    functionName: "get_all_farms",
   });
 
   return result;
