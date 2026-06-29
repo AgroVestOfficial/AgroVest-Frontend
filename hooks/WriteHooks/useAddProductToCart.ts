@@ -13,7 +13,7 @@ const useAddProductToCart = () => {
         const result = writeContract({
           abi: farmAbi,
           address: getAddress(contractAddress ? contractAddress : ""),
-          functionName: "addProductToCart",
+          functionName: "add_to_cart",
           args: [_productId],
         });
 
