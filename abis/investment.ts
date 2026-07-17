@@ -248,7 +248,7 @@ export const investmentABI = [
   },
   {
     inputs: [{ internalType: "uint256", name: "_farmId", type: "uint256" }],
-    name: "investEthers",
+    name: "invest",
     outputs: [],
     stateMutability: "payable",
     type: "function",

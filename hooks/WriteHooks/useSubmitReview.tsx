@@ -13,7 +13,7 @@ const useSubmitReview = () => {
         const result = writeContract({
           abi: farmAbi,
           address: getAddress(contractAddress ? contractAddress : ""),
-          functionName: "submitReview",
+          functionName: "submit_review",
           args: [_productId, _review],
         });
         return result;
@@ -22,7 +22,7 @@ const useSubmitReview = () => {
         throw err;
       }
     },
-    [writeContract]
+    [writeContract, contractAddress]
   );
 };
 
