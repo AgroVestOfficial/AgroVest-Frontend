@@ -55,6 +55,11 @@ const ExploreD = ({ id }: { id: string }) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    const minAmount = Number(investmentData?.minAmount ?? 0);
+    if (amount < minAmount) {
+      toast.error(`Minimum investment is ${formatEther(BigInt(minAmount))} ETH`);
+      return;
+    }
     try {
       await investEthers(Number(id), parseEther(amount.toString()));
       toast.dismiss();
@@ -173,10 +178,13 @@ const ExploreD = ({ id }: { id: string }) => {
                       type="number"
                       name="amount"
                       id="amount"
-                      placeholder="Enter amount"
+                      placeholder={`Min: ${formatEther(BigInt(investmentData?.minAmount ?? 0))} ETH`}
+                      min={Number(investmentData?.minAmount ?? 0)}
+                      step="0.000001"
                       className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={amount}
                       onChange={(e) => setAmount(Number(e.target.value))}
+                      required
                     />
                   </div>
                   <Button
