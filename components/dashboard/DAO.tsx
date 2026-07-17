@@ -7,7 +7,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { farmInvestments } from "@/utils/products";
 import { Button } from "@nextui-org/react";
 
 const DAO = () => {
@@ -47,25 +46,20 @@ const DAO = () => {
         <Table>
           <TableHeader>
             <TableRow className="text-gray-800">
-              <TableHead className="text-start">Investor Address</TableHead>
-              <TableHead>Fund&apos;s Target</TableHead>
-              <TableHead>Farm ID</TableHead>
-              <TableHead>Amount Deposited</TableHead>
-              <TableHead>Balance</TableHead>
+              <TableHead className="text-start">Title</TableHead>
+              <TableHead>Proposer</TableHead>
+              <TableHead>Accept</TableHead>
+              <TableHead>Reject</TableHead>
+              <TableHead>Required</TableHead>
               <TableHead className="text-center">Status</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {farmInvestments.slice(0, 3).map((farm, index) => (
-              <TableRow key={index} className="text-gray-600">
-                <TableCell className="text-start font-medium">{farm.farmName}</TableCell>
-                <TableCell>{farm.fundsTarget}</TableCell>
-                <TableCell>{farm.investors}</TableCell>
-                <TableCell>{farm.amountRaised}</TableCell>
-                <TableCell>{farm.balance}</TableCell>
-                <TableCell className="text-center">{farm.status}</TableCell>
-              </TableRow>
-            ))}
+            <TableRow>
+              <TableCell colSpan={6} className="text-center text-gray-500">
+                No proposals yet
+              </TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </main>
