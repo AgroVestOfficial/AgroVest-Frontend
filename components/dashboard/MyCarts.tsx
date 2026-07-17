@@ -169,8 +169,8 @@ const MyCarts = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {cartItems?.map((item: ProductType, index: number) => (
-                <TableRow key={index} className="text-gray-600">
+              {cartItems?.map((item: ProductType) => (
+                <TableRow key={Number(item.product_id)} className="text-gray-600">
                   <TableCell className="text-start font-medium">
                     <div className="flex items-center gap-2">
                       <div className="h-[50px] w-[50px]">

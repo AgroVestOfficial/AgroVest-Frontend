@@ -141,8 +141,8 @@ const UserDashboard = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {availableInvestment?.slice(0, 3).map((farm: InvestmentType, index: number) => (
-                <TableRow key={index} className="text-gray-600">
+              {availableInvestment?.slice(0, 3).map((farm: InvestmentType) => (
+                <TableRow key={Number(farm.id)} className="text-gray-600">
                   <TableCell className="text-start font-medium">{farm.name}</TableCell>
                   <TableCell className="text-center">{Number(farm.minAmount)} ETH</TableCell>
                   <TableCell className="text-center">{Number(farm.farmInvestorCount)}</TableCell>
