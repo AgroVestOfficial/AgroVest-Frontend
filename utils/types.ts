@@ -45,3 +45,18 @@ export type ReviewType = {
   reviewer: `0x${string}`;
   review: string;
 };
+
+export type ProposalType = {
+  proposalId: bigint;
+  title: string;
+  description: string;
+  createdAt: bigint;
+  executionTime: bigint;
+  proposer: string;
+  executed: boolean;
+  isChallenged: boolean;
+  requiredVotes: bigint;
+  acceptVotes: bigint;
+  rejectVotes: bigint;
+  undecidedVotes: bigint;
+};
