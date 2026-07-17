@@ -4,6 +4,7 @@ import Logo from "./Logo";
 import logo from "@/public/logo-white.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAccount, useDisconnect } from "wagmi";
 
 const DashboardSidebar = ({
   sidebarOpen,
@@ -16,6 +17,10 @@ const DashboardSidebar = ({
   const sidebar = useRef(null);
 
   const pathname = usePathname();
+  const { address, isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
+
+  const truncatedAddress = address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "";
 
   const handleCloseSideBar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -176,7 +181,12 @@ const DashboardSidebar = ({
             </svg>
           </button>
         </div>
-        <h1 className="ml-2 text-sm uppercase text-gray-200">Welcome Back</h1>
+        {isConnected && (
+          <div className="ml-2 flex items-center gap-2">
+            <div className="h-2 w-2 rounded-full bg-green-400" />
+            <span className="text-xs text-gray-300">{truncatedAddress}</span>
+          </div>
+        )}
       </div>
 
       {/* <!-- SIDEBAR HEADER --> */}
@@ -205,7 +215,7 @@ const DashboardSidebar = ({
               <li>
                 <button
                   className="flex items-center gap-2.5 rounded-sm px-4 py-2 text-gray-300 duration-300 ease-in-out"
-                  onClick={() => open()}
+                  onClick={() => disconnect()}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
