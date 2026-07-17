@@ -155,9 +155,9 @@ const UserPortfolio = () => {
             You have not registered a farm
           </h1>
         ) : (
-          userFarm?.map((res: FarmType, index: number) => (
+          userFarm?.map((res: FarmType) => (
             <div
-              key={index}
+              key={Number(res.farm_id)}
               className="flex flex-col items-end gap-2 rounded-[10px] bg-gray-100 p-4 shadow-lg"
             >
               <div className="h-[200px] w-full">
