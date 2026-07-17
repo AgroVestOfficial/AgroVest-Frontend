@@ -48,9 +48,9 @@ const ExploreUserFarm = () => {
       </div>
 
       <div className="grid w-full gap-8 md:grid-cols-2">
-        {investment?.map((res, index: number) => (
+        {investment?.map((res) => (
           <div
-            key={index}
+            key={Number(res.id)}
             className="flex flex-col items-end gap-2 rounded-[10px] bg-gray-100 p-4 shadow-lg"
           >
             <div className="h-[200px] w-full">
