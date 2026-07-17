@@ -4,18 +4,9 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { QueryLoader, QueryError } from "@/components/shared/QueryState";
 import useGetAllAvailableInvestment from "@/hooks/ReadHooks/useGetAllAvailableInvestment";
-import { InvestmentType } from "@/utils/types";
 
 const ExploreUserFarm = () => {
-  const {
-    data: investment,
-    isLoading,
-    isError,
-  } = useGetAllAvailableInvestment() as unknown as {
-    data: InvestmentType[];
-    isLoading: boolean;
-    isError: boolean;
-  };
+  const { data: investment, isLoading, isError } = useGetAllAvailableInvestment();
 
   const router = useRouter();
 

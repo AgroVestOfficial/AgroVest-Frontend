@@ -22,15 +22,7 @@ import { ProductType } from "@/utils/types";
 const PurchasedItems = () => {
   const { address } = useAccount();
   const path = usePathname();
-  const {
-    data: purchasedItem,
-    isLoading,
-    isError,
-  } = useGetAllPurchasedProduct(address) as unknown as {
-    data: ProductType[];
-    isLoading: boolean;
-    isError: boolean;
-  };
+  const { data: purchasedItem, isLoading, isError } = useGetAllPurchasedProduct(address);
 
   if (isLoading) {
     return (

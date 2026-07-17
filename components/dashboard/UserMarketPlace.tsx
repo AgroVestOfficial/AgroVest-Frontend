@@ -6,21 +6,12 @@ import React from "react";
 import Categories from "./Categories";
 import Products from "./Products";
 import { QueryLoader, QueryError } from "@/components/shared/QueryState";
-import { ProductType } from "@/utils/types";
 import { useAccount } from "wagmi";
 import useGetFarmProductByAddress from "@/hooks/ReadHooks/useGetFarmProductByAddress";
 
 const MarketPlace = () => {
   const { address } = useAccount();
-  const {
-    data: products,
-    isLoading,
-    isError,
-  } = useGetFarmProductByAddress(address) as unknown as {
-    data: ProductType[];
-    isLoading: boolean;
-    isError: boolean;
-  };
+  const { data: products, isLoading, isError } = useGetFarmProductByAddress(address);
   const path = usePathname();
 
   if (isLoading) {
@@ -93,7 +84,7 @@ const MarketPlace = () => {
 
       <Categories />
 
-      <Products title="All Products" data={products} />
+      <Products title="All Products" data={products ?? []} />
     </section>
   );
 };

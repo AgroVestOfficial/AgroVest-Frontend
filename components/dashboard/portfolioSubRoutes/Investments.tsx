@@ -89,9 +89,7 @@ import AddInvestment from "../AddInvestment";
 const Investments = () => {
   const path = usePathname();
   const router = useRouter();
-  const { data: investment } = useGetAllAvailableInvestment() as unknown as {
-    data: InvestmentType[];
-  };
+  const { data: investment } = useGetAllAvailableInvestment();
 
   return (
     <section className="flex w-full flex-col gap-6 py-4">

@@ -21,47 +21,31 @@ import { formatEther } from "viem";
 import useGetTotalSales from "@/hooks/ReadHooks/useGetTotalSales";
 import useGetTotalInvestment from "@/hooks/ReadHooks/useGetTotalInvestment";
 import useGetAllAvailableInvestment from "@/hooks/ReadHooks/useGetAllAvailableInvestment";
-import { FarmType, InvestmentType, InvestorsType, ProductType } from "@/utils/types";
+import { InvestmentType } from "@/utils/types";
 
 const UserDashboard = () => {
   const {
     data: products,
     isLoading: productsLoading,
     isError: productsError,
-  } = useGetAllFarmProducts() as { data: ProductType[]; isLoading: boolean; isError: boolean };
-  const {
-    data: farms,
-    isLoading: farmsLoading,
-    isError: farmsError,
-  } = useGetAllFarms() as { data: FarmType[]; isLoading: boolean; isError: boolean };
+  } = useGetAllFarmProducts();
+  const { data: farms, isLoading: farmsLoading, isError: farmsError } = useGetAllFarms();
   const {
     data: investors,
     isLoading: investorsLoading,
     isError: investorsError,
-  } = useGetAllInvestors() as unknown as {
-    data: InvestorsType[];
-    isLoading: boolean;
-    isError: boolean;
-  };
-  const {
-    data: totalSales,
-    isLoading: salesLoading,
-    isError: salesError,
-  } = useGetTotalSales() as { data: bigint; isLoading: boolean; isError: boolean };
+  } = useGetAllInvestors();
+  const { data: totalSales, isLoading: salesLoading, isError: salesError } = useGetTotalSales();
   const {
     data: totalInvestment,
     isLoading: investmentLoading,
     isError: investmentError,
-  } = useGetTotalInvestment() as { data: bigint; isLoading: boolean; isError: boolean };
+  } = useGetTotalInvestment();
   const {
     data: availableInvestment,
     isLoading: availInvestLoading,
     isError: availInvestError,
-  } = useGetAllAvailableInvestment() as unknown as {
-    data: InvestmentType[];
-    isLoading: boolean;
-    isError: boolean;
-  };
+  } = useGetAllAvailableInvestment();
 
   return (
     <section className="flex w-full flex-col gap-6 py-4">
