@@ -254,6 +254,13 @@ export const investmentABI = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "uint256", name: "_farmId", type: "uint256" }],
+    name: "invest",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "token",
     outputs: [{ internalType: "contract IERC20", name: "", type: "address" }],
