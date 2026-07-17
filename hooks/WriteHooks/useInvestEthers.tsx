@@ -1,6 +1,6 @@
 import { useWriteContract } from "wagmi";
 import { investmentABI } from "@/abis/investment";
-import { getAddress, parseEther } from "viem";
+import { getAddress } from "viem";
 import { useCallback } from "react";
 
 const useInvestEthers = () => {
@@ -13,7 +13,7 @@ const useInvestEthers = () => {
         const result = await writeContractAsync({
           abi: investmentABI,
           address: getAddress(contractAddress ? contractAddress : ""),
-          functionName: "investEthers",
+          functionName: "invest",
           args: [BigInt(_farmId)],
           value: _amount,
         });
@@ -23,7 +23,7 @@ const useInvestEthers = () => {
         throw err;
       }
     },
-    [writeContractAsync]
+    [writeContractAsync, contractAddress]
   );
 };
 

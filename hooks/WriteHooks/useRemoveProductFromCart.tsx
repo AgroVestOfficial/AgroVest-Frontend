@@ -13,7 +13,7 @@ const useRemoveProductFromCart = () => {
         const result = writeContract({
           abi: farmAbi,
           address: getAddress(contractAddress ? contractAddress : ""),
-          functionName: "removeProductFromCart",
+          functionName: "remove_from_cart",
           args: [_productId],
         });
         return result;
@@ -22,7 +22,7 @@ const useRemoveProductFromCart = () => {
         throw err;
       }
     },
-    [writeContract]
+    [writeContract, contractAddress]
   );
 };
 
