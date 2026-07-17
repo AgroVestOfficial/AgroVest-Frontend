@@ -54,7 +54,7 @@ const Products = ({ data }: { data: ProductType[] }) => {
 
       <MyMarket />
 
-      {data?.length == 0 ? (
+      {data?.length === 0 ? (
         <h1 className="mt-8 flex h-full w-full items-center justify-center text-xl font-medium text-darkgreen md:text-2xl">
           You don&apos;t have a product yet
         </h1>
