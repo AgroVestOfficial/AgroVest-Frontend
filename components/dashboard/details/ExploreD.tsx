@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import {
   Modal,
@@ -27,6 +26,7 @@ import useGetAllAvailableInvestment from "@/hooks/ReadHooks/useGetAllAvailableIn
 import { toast } from "sonner";
 import useInvestEthers from "@/hooks/WriteHooks/useInvestEthers";
 import { parseEther, formatEther } from "viem";
+import { FarmType, InvestmentType, InvestorsType } from "@/utils/types";
 
 const ExploreD = ({ id }: { id: string }) => {
   const { data: allFarms } = useGetAllFarms();
@@ -34,17 +34,17 @@ const ExploreD = ({ id }: { id: string }) => {
   const { data: investment } = useGetAllAvailableInvestment();
   const investEthers = useInvestEthers();
 
-  const [currentData, setCurrentData] = useState<any>([]);
-  const [investmentData, setInvestmentData] = useState<any>([]);
+  const [currentData, setCurrentData] = useState<FarmType | undefined>(undefined);
+  const [investmentData, setInvestmentData] = useState<InvestmentType | undefined>(undefined);
 
   useMemo(() => {
-    const farmDetail = allFarms?.find((farm: any) => Number(farm.farm_id) === Number(id));
+    const farmDetail = allFarms?.find((farm: FarmType) => Number(farm.farm_id) === Number(id));
     setCurrentData(farmDetail);
   }, [id, allFarms]);
 
   useMemo(() => {
     const farmInvestment = investment?.find(
-      (investor: any) => Number(investor.farmId) === Number(id)
+      (invest: InvestmentType) => Number(invest.farmId) === Number(id)
     );
     setInvestmentData(farmInvestment);
   }, [id, investment]);
@@ -101,7 +101,7 @@ const ExploreD = ({ id }: { id: string }) => {
         <div className="h-full w-full">
           <Image
             src={`https://gateway.pinata.cloud/ipfs/${currentData?.business_image}`}
-            alt={currentData?.business_name}
+            alt={currentData?.business_name ?? "farm"}
             width={2480}
             height={1360}
             quality={100}
@@ -143,12 +143,12 @@ const ExploreD = ({ id }: { id: string }) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {farmInvestors?.map((investor: any, index: number) => (
+            {farmInvestors?.map((investor: InvestorsType, index: number) => (
               <TableRow key={index} className="text-gray-600">
                 <TableCell>{Number(investor.id)}</TableCell>
 
                 <TableCell className="text-start font-medium">{investor.investorAddress}</TableCell>
-                <TableCell>{formatEther(investor.amount)}</TableCell>
+                <TableCell>{formatEther(BigInt(investor.amount))}</TableCell>
               </TableRow>
             ))}
           </TableBody>
