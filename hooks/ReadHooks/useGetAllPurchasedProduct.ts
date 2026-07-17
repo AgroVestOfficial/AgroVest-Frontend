@@ -1,11 +1,9 @@
 import { useReadContract } from "wagmi";
 import farmAbi from "../../abis/farm.json";
 import { getAddress } from "viem";
+import { ProductType } from "@/utils/types";
 
-/**
- * Custom hook to fetch farm products by address
- * @returns
- */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useGetAllPurchasedProduct = (address: any) => {
   const contractAddress = process.env.NEXT_PUBLIC_FARM_CONTRACT_ADDRESS;
 
@@ -16,7 +14,10 @@ const useGetAllPurchasedProduct = (address: any) => {
     args: [address],
   });
 
-  return result;
+  return {
+    ...result,
+    data: result.data as ProductType[] | undefined,
+  };
 };
 
 export default useGetAllPurchasedProduct;

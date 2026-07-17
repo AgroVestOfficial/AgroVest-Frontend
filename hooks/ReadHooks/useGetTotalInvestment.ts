@@ -10,7 +10,10 @@ const useGetTotalInvestment = () => {
     functionName: "getTotalInvestment",
   });
 
-  return result;
+  return {
+    ...result,
+    data: result.data as bigint | undefined,
+  };
 };
 
 export default useGetTotalInvestment;
