@@ -27,16 +27,11 @@ import useGetAllAvailableInvestment from "@/hooks/ReadHooks/useGetAllAvailableIn
 import { toast } from "sonner";
 import useInvestEthers from "@/hooks/WriteHooks/useInvestEthers";
 import { parseEther, formatEther } from "viem";
-import { FarmType, InvestmentType, InvestorsType } from "@/utils/types";
 
 const ExploreD = ({ id }: { id: string }) => {
-  const { data: allFarms } = useGetAllFarms() as unknown as { data: FarmType[] };
-  const { data: farmInvestors } = useGetFarmInvestors(Number(id)) as unknown as {
-    data: InvestorsType[];
-  };
-  const { data: investment } = useGetAllAvailableInvestment() as unknown as {
-    data: InvestmentType[];
-  };
+  const { data: allFarms } = useGetAllFarms();
+  const { data: farmInvestors } = useGetFarmInvestors(Number(id));
+  const { data: investment } = useGetAllAvailableInvestment();
   const investEthers = useInvestEthers();
 
   const [currentData, setCurrentData] = useState<any>([]);

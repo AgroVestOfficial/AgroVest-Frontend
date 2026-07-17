@@ -19,22 +19,13 @@ import { useAccount } from "wagmi";
 import useAddFarmProduct from "@/hooks/WriteHooks/useAddFarmProduct";
 import { uploadImageToIPFS } from "@/utils/uploadToIPFS";
 import { toast } from "sonner";
-import { ProductType } from "@/utils/types";
 
 const MyMarket = () => {
   const addProduct = useAddFarmProduct();
 
   const { address } = useAccount();
 
-  const {
-    data: products,
-    isLoading,
-    isError,
-  } = useGetFarmProductByAddress(address) as unknown as {
-    data: ProductType[];
-    isLoading: boolean;
-    isError: boolean;
-  };
+  const { data: products, isLoading, isError } = useGetFarmProductByAddress(address);
 
   const path = usePathname();
 
@@ -121,7 +112,7 @@ const MyMarket = () => {
       ) : isError ? (
         <QueryError message="Failed to load your products. Please try again later." />
       ) : (
-        <Products title="My Products" data={products} />
+        <Products title="My Products" data={products ?? []} />
       )}
 
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>

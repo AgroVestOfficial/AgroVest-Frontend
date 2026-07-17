@@ -3,6 +3,7 @@
 "use client";
 import React, { FormEvent, useMemo, useState } from "react";
 import useGetAllFarms from "@/hooks/ReadHooks/useGetAllFarms";
+import { FarmType } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -20,15 +21,10 @@ import {
 import useRegisterFarm from "@/hooks/WriteHooks/useRegisterFarm";
 import { uploadImageToIPFS } from "@/utils/uploadToIPFS";
 import { toast } from "sonner";
-import { FarmType } from "@/utils/types";
 
 const UserPortfolio = () => {
   const { address } = useAccount();
-  const {
-    data: allFarms,
-    isLoading,
-    isError,
-  } = useGetAllFarms() as unknown as { data: FarmType[]; isLoading: boolean; isError: boolean };
+  const { data: allFarms, isLoading, isError } = useGetAllFarms();
   const registerFarm = useRegisterFarm();
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -85,7 +81,7 @@ const UserPortfolio = () => {
 
   useMemo(() => {
     const userFamrs = allFarms?.filter((farm: FarmType) => farm.farmerAddress === address);
-    setUserFarm(userFamrs);
+    setUserFarm(userFamrs ?? []);
   }, [address, allFarms]);
   const path = usePathname();
   const router = useRouter();

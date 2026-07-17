@@ -27,18 +27,10 @@ import { FarmType, ProductType } from "@/utils/types";
 const MyCarts = () => {
   // Hook calls
   const { address } = useAccount();
-  const {
-    data: initialCartItems,
-    isLoading,
-    isError,
-  } = useGetCartProducts(address) as unknown as {
-    data: ProductType[];
-    isLoading: boolean;
-    isError: boolean;
-  };
+  const { data: initialCartItems, isLoading, isError } = useGetCartProducts(address);
   const { purchaseMultipleProducts } = usePurchaseProduct();
   const removeProduct = useRemoveProductFromCart();
-  const { data: farms } = useGetAllFarms() as unknown as { data: FarmType[] };
+  const { data: farms } = useGetAllFarms();
 
   const productsToPurchase = initialCartItems?.map(
     (product: { product_id: number; product_price: number }) => ({
@@ -49,7 +41,7 @@ const MyCarts = () => {
 
   const handlePurchaseProduct = async () => {
     try {
-      await purchaseMultipleProducts(productsToPurchase);
+      await purchaseMultipleProducts(productsToPurchase ?? []);
       toast.dismiss();
       toast.success("Product purchased Successfully!");
     } catch (error) {

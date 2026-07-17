@@ -1,11 +1,8 @@
-import { useAccount, useReadContract } from "wagmi";
+import { useReadContract } from "wagmi";
 import farmAbi from "../../abis/farm.json";
 import { getAddress } from "viem";
+import { ReviewType } from "@/utils/types";
 
-/**
- * Custom hook to fetch farm products by address
- * @returns
- */
 const useGetProductReview = (id: number) => {
   const contractAddress = process.env.NEXT_PUBLIC_FARM_CONTRACT_ADDRESS;
 
@@ -16,7 +13,10 @@ const useGetProductReview = (id: number) => {
     args: [id],
   });
 
-  return result;
+  return {
+    ...result,
+    data: result.data as ReviewType[] | undefined,
+  };
 };
 
 export default useGetProductReview;
