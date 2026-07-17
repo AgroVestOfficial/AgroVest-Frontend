@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import {
   Modal,
@@ -22,11 +21,11 @@ const AddInvestment = () => {
 
   const createInvestment = useCreateInvestment();
 
-  const [farmID, setFarmID] = useState<any>("");
+  const [farmID, setFarmID] = useState("");
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [selectedFile, setSelectedFile] = useState<any>();
-  const [investmentImage, setInvestmentImage] = useState<any>("");
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [investmentImage, setInvestmentImage] = useState("");
   const [investmentName, setInvestmentName] = useState("");
   const [aboutInvestment, setAboutInvestment] = useState("");
   const [investmentTarget, setInvestmentTarget] = useState("");
@@ -196,7 +195,7 @@ const AddInvestment = () => {
                       placeholder="Enter Investment Description"
                       className="caret-color1 border-color1 bg-color1/5 w-full rounded-lg border px-4 py-3 text-sm text-gray-700 outline-none"
                       value={aboutInvestment}
-                      onChange={(e: any) => setAboutInvestment(e.target.value)}
+                      onChange={(e) => setAboutInvestment(e.target.value)}
                       required
                     />
                   </div>

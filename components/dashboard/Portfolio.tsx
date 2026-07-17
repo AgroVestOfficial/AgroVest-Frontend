@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { FormEvent, useMemo, useState } from "react";
 import useGetAllFarms from "@/hooks/ReadHooks/useGetAllFarms";
@@ -30,7 +28,7 @@ const UserPortfolio = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const [userFarm, setUserFarm] = useState<FarmType[]>([]);
-  const [selectedFile, setSelectedFile] = useState<any>();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [productName, setProductName] = useState("");
   const [productImage, setProductImage] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
