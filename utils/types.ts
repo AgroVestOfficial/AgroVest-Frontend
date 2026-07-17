@@ -52,7 +52,7 @@ export type ProposalType = {
   description: string;
   createdAt: bigint;
   executionTime: bigint;
-  proposer: string;
+  proposer: `0x${string}`;
   executed: boolean;
   isChallenged: boolean;
   requiredVotes: bigint;
