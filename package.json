@@ -61,7 +61,7 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "viem": "^2.53.1",
-    "wagmi": "^2.14.11"
+    "wagmi": "^3.7.3"
   },
   "devDependencies": {
     "@types/node": "^25",
