@@ -36,20 +36,15 @@ const FarmPortfolioD = ({ id }: { id: string }) => {
   const { data: farmInvestors } = useGetFarmInvestors(Number(id));
   const { data: investment } = useGetAllAvailableInvestment();
   const createInvestment = useCreateInvestment();
-  const [currentData, setCurrentData] = useState<any>({});
-  const [investmentData, setInvestmentData] = useState<any>({});
+  const currentData = useMemo(
+    () => allFarms?.find((farm: any) => Number(farm.farm_id) === Number(id)),
+    [id, allFarms]
+  );
 
-  useMemo(() => {
-    const farmDetail = allFarms?.find((farm: any) => Number(farm.farm_id) === Number(id));
-    setCurrentData(farmDetail);
-  }, [id, allFarms]);
-
-  useMemo(() => {
-    const farmInvestment = investment?.find(
-      (investor: any) => Number(investor.farmId) === Number(id)
-    );
-    setInvestmentData(farmInvestment);
-  }, [id, investment]);
+  const investmentData = useMemo(
+    () => investment?.find((investor: any) => Number(investor.farmId) === Number(id)),
+    [id, investment]
+  );
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedFile, setSelectedFile] = useState<any>();
@@ -136,7 +131,7 @@ const FarmPortfolioD = ({ id }: { id: string }) => {
         <div className="h-full w-full">
           <Image
             src={`https://gateway.pinata.cloud/ipfs/${currentData?.business_image}`}
-            alt={currentData?.business_name}
+            alt={currentData?.business_name ?? "farm"}
             width={2480}
             height={1360}
             quality={100}
