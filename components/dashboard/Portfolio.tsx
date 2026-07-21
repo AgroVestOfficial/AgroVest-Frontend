@@ -27,7 +27,6 @@ const UserPortfolio = () => {
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const [userFarm, setUserFarm] = useState<FarmType[]>([]);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [productName, setProductName] = useState("");
   const [productImage, setProductImage] = useState("");
@@ -77,10 +76,10 @@ const UserPortfolio = () => {
     }
   };
 
-  useMemo(() => {
-    const userFamrs = allFarms?.filter((farm: FarmType) => farm.farmerAddress === address);
-    setUserFarm(userFamrs ?? []);
-  }, [address, allFarms]);
+  const userFarms = useMemo(
+    () => allFarms?.filter((farm: FarmType) => farm.farmerAddress === address) ?? [],
+    [address, allFarms]
+  );
   const path = usePathname();
   const router = useRouter();
 
@@ -150,12 +149,12 @@ const UserPortfolio = () => {
           ))
         ) : isError ? (
           <QueryError message="Failed to load farms. Please try again later." />
-        ) : userFarm?.length === 0 ? (
+        ) : userFarms.length === 0 ? (
           <h1 className="mt-8 flex h-full w-full items-center justify-center text-xl font-medium text-darkgreen md:text-2xl">
             You have not registered a farm
           </h1>
         ) : (
-          userFarm?.map((res: FarmType) => (
+          userFarms.map((res: FarmType) => (
             <div
               key={Number(res.farm_id)}
               className="flex flex-col items-end gap-2 rounded-[10px] bg-gray-100 p-4 shadow-lg"

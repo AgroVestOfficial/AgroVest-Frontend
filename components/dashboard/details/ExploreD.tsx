@@ -34,20 +34,15 @@ const ExploreD = ({ id }: { id: string }) => {
   const { data: investment } = useGetAllAvailableInvestment();
   const investEthers = useInvestEthers();
 
-  const [currentData, setCurrentData] = useState<FarmType | undefined>(undefined);
-  const [investmentData, setInvestmentData] = useState<InvestmentType | undefined>(undefined);
+  const currentData = useMemo(
+    () => allFarms?.find((farm: FarmType) => Number(farm.farm_id) === Number(id)),
+    [id, allFarms]
+  );
 
-  useMemo(() => {
-    const farmDetail = allFarms?.find((farm: FarmType) => Number(farm.farm_id) === Number(id));
-    setCurrentData(farmDetail);
-  }, [id, allFarms]);
-
-  useMemo(() => {
-    const farmInvestment = investment?.find(
-      (invest: InvestmentType) => Number(invest.farmId) === Number(id)
-    );
-    setInvestmentData(farmInvestment);
-  }, [id, investment]);
+  const investmentData = useMemo(
+    () => investment?.find((invest: InvestmentType) => Number(invest.farmId) === Number(id)),
+    [id, investment]
+  );
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
