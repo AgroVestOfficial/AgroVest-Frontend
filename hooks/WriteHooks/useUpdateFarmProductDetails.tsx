@@ -20,7 +20,7 @@ const useUpdateFarmProductDetails = () => {
         const result = writeContract({
           abi: farmAbi,
           address: getAddress(contractAddress ? contractAddress : ""),
-          functionName: "addFarmProduct",
+          functionName: "updateFarmProduct",
           args: [
             _index,
             _productName,
