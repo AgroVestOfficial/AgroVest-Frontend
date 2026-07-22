@@ -159,19 +159,23 @@ const DAO = () => {
       ? Number(formatEther(tokenBalance)).toFixed(2)
       : "—";
 
-  const activeVoters = proposals
-    ? proposals.filter((p: ProposalType) => !p.executed).length
+  const activeProposals = proposals
+    ? proposals.filter((p: ProposalType) => {
+        if (p.executed) return false;
+        const now = BigInt(Math.floor(Date.now() / 1000));
+        return p.executionTime === 0n || now <= p.executionTime;
+      }).length
     : 0;
 
-  const totalVotes = proposals
-    ? proposals.reduce((sum: number, p: ProposalType) => sum + Number(p.acceptVotes ?? 0n), 0)
+  const executedProposals = proposals
+    ? proposals.filter((p: ProposalType) => p.executed).length
     : 0;
 
   const stats = [
-    { title: "Proposals", value: isLoading ? "…" : totalProposals },
+    { title: "Total Proposals", value: isLoading ? "…" : totalProposals },
     { title: "Locked Funds", value: isLoading ? "…" : lockedFunds },
-    { title: "Active Proposals", value: isLoading ? "…" : activeVoters },
-    { title: "Total Accept Votes", value: isLoading ? "…" : totalVotes },
+    { title: "Active Proposals", value: isLoading ? "…" : activeProposals },
+    { title: "Executed Proposals", value: isLoading ? "…" : executedProposals },
   ];
 
   return (
@@ -230,8 +234,7 @@ const DAO = () => {
               <TableRow className="text-gray-800">
                 <TableHead className="text-start">Title</TableHead>
                 <TableHead>Proposer</TableHead>
-                <TableHead>Accept</TableHead>
-                <TableHead>Reject</TableHead>
+                <TableHead>Created</TableHead>
                 <TableHead>Deadline</TableHead>
                 <TableHead className="text-center">Status</TableHead>
                 <TableHead className="text-center">Action</TableHead>
@@ -240,7 +243,7 @@ const DAO = () => {
             <TableBody>
               {!proposals || proposals.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={7} className="text-center text-gray-500">
+                  <TableCell colSpan={6} className="text-center text-gray-500">
                     No proposals yet
                   </TableCell>
                 </TableRow>
@@ -255,15 +258,8 @@ const DAO = () => {
                       <TableCell className="text-sm text-gray-600">
                         {shortenAddress(proposal.proposer)}
                       </TableCell>
-                      <TableCell className="text-green-600">
-                        {proposal.acceptVotes !== undefined
-                          ? proposal.acceptVotes.toString()
-                          : "—"}
-                      </TableCell>
-                      <TableCell className="text-red-500">
-                        {proposal.rejectVotes !== undefined
-                          ? proposal.rejectVotes.toString()
-                          : "—"}
+                      <TableCell className="text-sm text-gray-600">
+                        {formatTimestamp(proposal.createdAt)}
                       </TableCell>
                       <TableCell className="text-sm text-gray-600">
                         {formatTimestamp(proposal.executionTime)}

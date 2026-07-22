@@ -5,10 +5,11 @@ import { ProposalType } from "@/utils/types";
 
 const useGetAllProposals = () => {
   const contractAddress = process.env.NEXT_PUBLIC_DAO_CONTRACT_ADDRESS;
+  if (!contractAddress) throw new Error("DAO contract address is missing.");
 
   const result = useReadContract({
     abi: daoAbi,
-    address: getAddress(contractAddress ? contractAddress : ""),
+    address: getAddress(contractAddress),
     functionName: "getAllProposals",
   });
 
