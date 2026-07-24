@@ -54,9 +54,4 @@ export type ProposalType = {
   executionTime: bigint;
   proposer: `0x${string}`;
   executed: boolean;
-  isChallenged: boolean;
-  requiredVotes: bigint;
-  acceptVotes: bigint;
-  rejectVotes: bigint;
-  undecidedVotes: bigint;
 };

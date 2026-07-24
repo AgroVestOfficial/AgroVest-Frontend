@@ -1,0 +1,22 @@
+import { useReadContract } from "wagmi";
+import daoAbi from "../../abis/DAO.json";
+import { getAddress } from "viem";
+import { ProposalType } from "@/utils/types";
+
+const useGetAllProposals = () => {
+  const contractAddress = process.env.NEXT_PUBLIC_DAO_CONTRACT_ADDRESS;
+
+  const result = useReadContract({
+    abi: daoAbi,
+    address: getAddress(contractAddress ? contractAddress : ""),
+    functionName: "getAllProposals",
+    query: { enabled: !!contractAddress },
+  });
+
+  return {
+    ...result,
+    data: result.data as ProposalType[] | undefined,
+  };
+};
+
+export default useGetAllProposals;
